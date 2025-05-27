@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766609163978",
+    "project_id": "revive-memory-318cb",
+    "storage_bucket": "revive-memory-318cb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766609163978:android:88b27bc29284a618c45633",
+        "android_client_info": {
+          "package_name": "com.reviva.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiOUl3Wb06BONZrrrBSAeyzZy6fSX9cGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
