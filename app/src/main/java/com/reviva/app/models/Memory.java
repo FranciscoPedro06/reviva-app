@@ -11,6 +11,7 @@ public class Memory {
     private long unlockAt;
     private boolean isUnlocked;
 
+    // Constructor
     public Memory(String memory_id, String user_id, String title, String description, String media_url, String media_type, long createdAt, long unlockAt, boolean isUnlocked){
         this.memory_id = memory_id;
         this.user_id = user_id;
@@ -24,6 +25,64 @@ public class Memory {
 
     }
 
+    // Getters
+    public String getMemory_id() {
+        return memory_id;
+    }
+
+    public String getUser_id(){
+        return user_id;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+    public String getMedia_url(){
+        return media_url;
+    }
+
+    public String getMedia_type(){
+        return media_type;
+    }
+
+    public long getCreatedAt(){
+        return createdAt;
+    }
+
+    public long getUnlockAt(){
+        return unlockAt;
+    }
+
+    public boolean getIsUnlocked(){
+        return isUnlocked;
+    }
+
+    // Setters
+    public String setTitle(String title){
+        return title;
+    }
+    public String setDescription(String description){
+        return description;
+    }
+    public String setMedia_url(String media_url){
+        return media_url;
+    }
+    public String setMedia_type(String media_type) {
+        return media_type;
+    }
+    public long setCreatedAt(long createdAt){
+        return createdAt;
+    }
+    public long setUnlockAt(long unlockAt){
+        return unlockAt;
+        }
+    public boolean setIsUnlocked(boolean isUnlocked){
+        return isUnlocked;
+    }
 }
 
 
