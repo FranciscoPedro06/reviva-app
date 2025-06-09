@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Memoria1</string>
-    <string name="entrar">Entrar</string>
-    <string name="login">Login</string>
-    <string name="email">Digite seu email</string>
-    <string name="senha">Digite sua senha</string>
-    <string name="ou">ou</string>
-    <string name="cadastro">Ainda não possui uma conta? Cadastre-se</string>
-</resources>
