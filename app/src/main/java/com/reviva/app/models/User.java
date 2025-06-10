@@ -1,13 +1,15 @@
 package com.reviva.app.models;
 
-import java.util.UUID;
 public class User {
     private String uId;
     private String name;
     private String email;
     private String password;
 
-    // Constructor
+    // Constructors
+    public User() {
+    }
+
     public User(String uId, String name, String email, String password) {
         this.uId = uId;
         this.name = name;
@@ -33,16 +35,15 @@ public class User {
     }
 
     // Setters
-    public String setName(String name) {
-        return name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String setEmail(String email) {
-        return email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String setPassword(String password) {
-        return password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
-
