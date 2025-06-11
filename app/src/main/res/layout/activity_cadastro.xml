@@ -137,7 +137,8 @@
         app:layout_constraintEnd_toEndOf="@+id/shadow_layer"
         app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="@+id/shadow_layer"
-        tools:layout_editor_absoluteY="458dp" />
+        tools:layout_editor_absoluteY="458dp"
+        tools:ignore="MissingConstraints" />
 
 
     <ImageView
@@ -230,7 +231,8 @@
         android:contentDescription="Google logo"
         android:src="@drawable/ic_google"
         tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="636dp" />
+        tools:layout_editor_absoluteY="636dp"
+        tools:ignore="MissingConstraints" />
 
     <View
         android:layout_width="78dp"
