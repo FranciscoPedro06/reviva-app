@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradrient"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/mainText"
+        android:layout_width="290dp"
+        android:layout_height="462dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="111dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/inicio"
+        android:textColor="#FFFFFF"
+        android:textSize="56sp" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="139dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="85dp"
+        android:backgroundTint="#50B2DD"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/cadastrar"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>
