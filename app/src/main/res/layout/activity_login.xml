@@ -165,7 +165,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/google"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginTop="32dp"
@@ -176,7 +176,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/btnEntar"
+        android:id="@+id/btnEntrar"
         android:layout_width="170dp"
         android:layout_height="38dp"
         android:layout_marginBottom="72dp"
@@ -211,7 +211,7 @@
         app:layout_constraintEnd_toEndOf="@+id/shadow_layer"
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="@+id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/google" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
