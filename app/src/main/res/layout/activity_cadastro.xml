@@ -87,6 +87,8 @@
         android:layout_height="33dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_edittext"
+        android:textColorHint="#616161"
+        android:textColor="#000000"
         android:hint="Digite seu nome completo"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/shadow_layer"
@@ -101,6 +103,8 @@
         android:background="@drawable/rounded_edittext"
         android:hint="Digite seu email"
         android:textSize="12sp"
+        android:textColorHint="#616161"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@id/shadow_layer"
         app:layout_constraintStart_toStartOf="@id/shadow_layer"
         app:layout_constraintTop_toBottomOf="@id/nome" />
@@ -114,6 +118,8 @@
         android:hint="Criar senha"
         android:inputType="textPassword"
         android:textSize="12sp"
+        android:textColorHint="#616161"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@id/shadow_layer"
         app:layout_constraintStart_toStartOf="@id/shadow_layer"
         app:layout_constraintTop_toBottomOf="@id/email" />
@@ -127,6 +133,8 @@
         android:hint="Confirmar senha"
         android:inputType="textPassword"
         android:textSize="12sp"
+        android:textColorHint="#616161"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@id/shadow_layer"
         app:layout_constraintStart_toStartOf="@id/shadow_layer"
         app:layout_constraintTop_toBottomOf="@id/senha" />
