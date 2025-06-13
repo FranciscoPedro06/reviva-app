@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.reviva.app.R;
+import com.reviva.app.models.User;
+import com.reviva.app.utils.FirebaseManager;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro); // Confere com o XML
+        setContentView(R.layout.activity_cadastro);
 
         nomeEditText = findViewById(R.id.nome);
         emailEditText = findViewById(R.id.email);
@@ -39,10 +41,36 @@ public class CadastroActivity extends AppCompatActivity {
                 } else if (!senha.equals(confirmaSenha)) {
                     Toast.makeText(CadastroActivity.this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CadastroActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    cadastrarUsuario(nome, email, senha);
                 }
             }
         });
     }
+
+    private void cadastrarUsuario(String nome, String email, String password) {
+        FirebaseManager.getInstance().registerUser(email, password, new FirebaseManager.OnRegisterCompleteListener() {
+            @Override
+            public void onSuccess(String uid) {
+                User novoUsuario = new User(uid, nome, email, password);
+
+                FirebaseManager.getInstance().saveUserData(novoUsuario, new FirebaseManager.OnCompleteListener() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(CadastroActivity.this, "Cadastro completo com sucesso!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(CadastroActivity.this, "Erro ao salvar dados do usuário: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(CadastroActivity.this, "Erro ao cadastrar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
-  
