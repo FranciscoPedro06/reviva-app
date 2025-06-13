@@ -6,7 +6,7 @@ public class User {
     private String email;
     private String password;
 
-    // Constructors
+    // Construtor vazio necessário para Firebase
     public User() {
     }
 
@@ -18,7 +18,7 @@ public class User {
     }
 
     // Getters
-    public String getuId() {
+    public String getUid() {
         return uId;
     }
 
@@ -35,6 +35,10 @@ public class User {
     }
 
     // Setters
+    public void setUid(String uid) {
+        this.uId = uid;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

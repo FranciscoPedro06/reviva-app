@@ -1,7 +1,7 @@
 <resources>
+    <string name="app_name">Reviva</string>
     <string name="inicio">O tempo guarda.\nVocê escolhe quando lembrar</string>
     <string name="cadastrar">Começar</string>
-    <string name="app_name">Memoria1</string>
     <string name="entrar">Entrar</string>
     <string name="login">Login</string>
     <string name="email">Digite seu email</string>

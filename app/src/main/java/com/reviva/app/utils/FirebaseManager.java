@@ -1,11 +1,11 @@
 package com.reviva.app.utils;
 
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.reviva.app.models.Memory;
+import com.reviva.app.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,12 @@ public class FirebaseManager {
     private FirebaseFirestore db;
     private FirebaseStorage storage;
 
-    // Construtor privado para Singleton
     private FirebaseManager() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
     }
 
-     // Método para obter a instância Singleton
     public static synchronized FirebaseManager getInstance() {
         if (instance == null) {
             instance = new FirebaseManager();
@@ -32,17 +30,22 @@ public class FirebaseManager {
         return instance;
     }
 
-    // --- Métodos para Firebase Authentication ---
-
     public FirebaseAuth getAuth() {
         return mAuth;
     }
 
-    public void registerUser(String email, String password, OnCompleteListener listener) {
+    // Nova interface personalizada para cadastro com UID
+    public interface OnRegisterCompleteListener {
+        void onSuccess(String uid);
+        void onFailure(Exception e);
+    }
+
+    public void registerUser(String email, String password, OnRegisterCompleteListener listener) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        listener.onSuccess();
+                        String uid = task.getResult().getUser().getUid();
+                        listener.onSuccess(uid);
                     } else {
                         listener.onFailure(task.getException());
                     }
@@ -64,21 +67,25 @@ public class FirebaseManager {
         mAuth.signOut();
     }
 
-
-    // --- Métodos para Firebase Firestore (Database) ---
-
     public FirebaseFirestore getFirestore() {
         return db;
     }
 
+    public void saveUserData(User user, OnCompleteListener listener) {
+        db.collection("users")
+                .document(user.getUid())
+                .set(user)
+                .addOnSuccessListener(unused -> listener.onSuccess())
+                .addOnFailureListener(listener::onFailure);
+    }
+
     public void saveMemory(Memory memory, OnCompleteListener listener) {
         db.collection("memories")
-                .document(memory.getMemoryId()) // Supondo que Memory tenha getId()
+                .document(memory.getMemoryId())
                 .set(memory)
                 .addOnSuccessListener(aVoid -> listener.onSuccess())
                 .addOnFailureListener(listener::onFailure);
     }
-
 
     public void getMemoriesForUser(String userId, OnGetDataListener listener) {
         db.collection("memories")
@@ -97,8 +104,6 @@ public class FirebaseManager {
                 .addOnFailureListener(listener::onFailure);
     }
 
-
-
     public void getMemoryById(String memoryId, OnGetDocumentListener listener) {
         db.collection("memories")
                 .document(memoryId)
@@ -113,9 +118,6 @@ public class FirebaseManager {
                 })
                 .addOnFailureListener(listener::onFailure);
     }
-
-
-    // --- Métodos para Firebase Storage (Armazenamento de mídia) ---
 
     public FirebaseStorage getStorage() {
         return storage;
@@ -136,14 +138,12 @@ public class FirebaseManager {
                 });
     }
 
-
     public void getFileDownloadUrl(String filePath, OnDownloadUrlCompleteListener listener) {
         storage.getReference().child(filePath)
                 .getDownloadUrl()
                 .addOnSuccessListener(uri -> listener.onSuccess(uri.toString()))
                 .addOnFailureListener(listener::onFailure);
     }
-
 
     public void deleteFile(String filePath, OnCompleteListener listener) {
         storage.getReference().child(filePath)
@@ -152,21 +152,18 @@ public class FirebaseManager {
                 .addOnFailureListener(listener::onFailure);
     }
 
-
-    // --- Interfaces de Callback (exemplo, você pode criar suas próprias) ---
-
     public interface OnCompleteListener {
         void onSuccess();
         void onFailure(Exception e);
     }
 
     public interface OnGetDataListener {
-        void onSuccess(java.util.List<Object> dataList); // Adapte para o tipo de dado correto
+        void onSuccess(List<Object> dataList);
         void onFailure(Exception e);
     }
 
     public interface OnGetDocumentListener {
-        void onSuccess(Object document); // Adapte para o tipo de dado correto (ex: Memory)
+        void onSuccess(Object document);
         void onFailure(Exception e);
     }
 
