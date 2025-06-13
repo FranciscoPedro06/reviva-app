@@ -27,10 +27,10 @@
         android:id="@+id/view3"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="128dp"
         android:background="@drawable/ellipse_white"
         app:layout_constraintEnd_toEndOf="@+id/shadow_layer"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@+id/shadow_layer"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
