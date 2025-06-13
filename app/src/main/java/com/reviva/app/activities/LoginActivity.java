@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.reviva.app.R;
+import com.reviva.app.utils.FirebaseManager;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,21 +51,24 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, senha)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
-                                // Redirecionar para a próxima tela
-                                // startActivity(new Intent(this, MainActivity.class));
-                                // finish();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Erro: email ou senha incorretos.", Toast.LENGTH_SHORT).show();
-                            }
+                FirebaseManager.getInstance().loginUser(email, senha, new FirebaseManager.OnCompleteListener() {
+                    @Override
+                    public void onSuccess() {
+                        runOnUiThread(() -> {
+                            Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
+                            // Redirecionar para a próxima tela
+                            // startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            // finish();
                         });
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        runOnUiThread(() -> Toast.makeText(LoginActivity.this, "Erro: email ou senha incorretos.", Toast.LENGTH_SHORT).show());
+                    }
+                });
             }
         });
-
         // Ação do botão Google
         google.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,10 +81,14 @@ public class LoginActivity extends AppCompatActivity {
         cadastrarText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Tela de cadastro", Toast.LENGTH_SHORT).show();
-                // Abre a tela de cadastro
-                // startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
+                startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Não faz nada, bloqueando o botão Voltar
+
     }
 }
