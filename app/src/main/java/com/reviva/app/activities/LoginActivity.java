@@ -56,9 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess() {
                         runOnUiThread(() -> {
                             Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
-                            // Redirecionar para a próxima tela
-                            // startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            // finish();
+                            startActivity(new Intent(LoginActivity.this, MemoriaActivity.class));
+                            finish();
                         });
                     }
 
