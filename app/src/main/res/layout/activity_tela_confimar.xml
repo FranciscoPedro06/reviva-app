@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="500dp"
+    android:layout_height="852dp"
+    android:background="#50B2DD"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/successMessage"
+        android:layout_width="385dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="176dp"
+        android:gravity="center_vertical"
+        android:text="@string/memoria"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ellipse"
+        android:layout_width="213dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="266dp"
+        android:background="@drawable/ellipse_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/checkIcon"
+        android:layout_width="157dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="288dp"
+        android:src="@drawable/check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBackground"
+        android:layout_width="197dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="608dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/voltar"
+        android:textColor="#50B2DD"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

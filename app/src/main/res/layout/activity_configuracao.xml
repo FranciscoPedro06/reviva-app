@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/configuracaoLayout"
+    android:layout_width="500dp"
+    android:layout_height="852dp"
+    android:background="#50B2DD"
+    android:elevation="4dp">
+
+    <View
+        android:id="@+id/ellipseWhite"
+        android:layout_width="473dp"
+        android:layout_height="906dp"
+        android:layout_marginStart="-40dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/elliipse_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textConfiguracoes"
+        android:layout_width="119dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:text="@string/configuracao"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconVoltar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:src="@drawable/ic_voltar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textAlterarDados"
+        android:layout_width="102dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="308dp"
+        android:text="@string/dados"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textNotificacoes"
+        android:layout_width="94dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="367dp"
+        android:text="@string/notificacao"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textSairConta"
+        android:layout_width="108dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="408dp"
+        android:gravity="center_vertical"
+        android:text="@string/sair"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vectorDecorativo"
+        android:layout_width="20dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="336dp"
+        android:background="@drawable/ic_avan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
