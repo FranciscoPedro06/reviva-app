@@ -29,7 +29,7 @@ public class CadastroActivity extends AppCompatActivity {
         senhaEditText = findViewById(R.id.senha);
         confirmaSenhaEditText = findViewById(R.id.confirmaSenha);
         cadastrarBtn = findViewById(R.id.btnCadastrar);
-        loginText = findViewById(R.id.login);
+        loginText = findViewById(R.id.login_link);
 
         cadastrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
