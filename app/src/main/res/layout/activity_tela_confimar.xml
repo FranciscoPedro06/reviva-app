@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnBackground"
+        android:id="@+id/btnBackMemory"
         android:layout_width="197dp"
         android:layout_height="46dp"
         android:layout_marginStart="120dp"

@@ -8,7 +8,7 @@
     tools:context=".activity_criar_memoria">
 
     <ImageButton
-        android:id="@+id/btnVoltar"
+        android:id="@+id/btnMenu"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -415,7 +415,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="72dp"
         android:text="@string/cancelamento"
         android:textColor="#000"
         android:textSize="12sp"
@@ -430,7 +430,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="72dp"
         android:backgroundTint="#50B2DD"
         android:text="@string/salvamento"
         android:textColor="#FFFF"
