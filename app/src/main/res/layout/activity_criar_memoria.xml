@@ -34,8 +34,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCategorias"
         android:layout_width="0dp"
-        android:layout_height="186dp"
-        android:layout_marginHorizontal="32dp"
+        android:layout_height="wrap_content" android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
@@ -43,148 +42,183 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white">
 
-            <ImageButton
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3"> <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="4dp"> <ImageButton
                 android:id="@+id/btnRelacionamentos"
-                android:layout_width="65dp"
-                android:layout_height="62dp"
+                android:layout_width="65dp" android:layout_height="62dp"
                 android:background="@drawable/bg_button_rounded"
                 android:contentDescription="@string/relacionamentos"
-                android:src="@drawable/ic_coracao"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_coracao" />
 
-            <TextView
-                android:id="@+id/txtRelacionamentos"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtRelacionamentos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/relacionamentos"
+                    android:textColor="#616161"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
+
+                    <ImageButton
+                        android:id="@+id/btnFamilia"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/bg_button_rounded"
+                        android:contentDescription="@string/familia"
+                        android:src="@drawable/ic_familia" />
+
+                    <TextView
+                        android:id="@+id/txtFamilia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/familia"
+                        android:textColor="#616161"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
+
+                    <ImageButton
+                        android:id="@+id/btnAmigos"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/bg_button_rounded"
+                        android:contentDescription="@string/amigos"
+                        android:src="@drawable/ic_amigos" />
+
+                    <TextView
+                        android:id="@+id/txtAmigos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/amigos"
+                        android:textColor="#616161"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/relacionamentos"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnRelacionamentos"
-                app:layout_constraintStart_toStartOf="@+id/btnRelacionamentos"
-                app:layout_constraintTop_toBottomOf="@+id/btnRelacionamentos" />
-
-            <ImageButton
-                android:id="@+id/btnFamilia"
-                android:layout_width="65dp"
-                android:layout_height="63dp"
-                android:background="@drawable/bg_button_rounded"
-                android:contentDescription="@string/familia"
-                android:src="@drawable/ic_familia"
-                app:layout_constraintEnd_toStartOf="@+id/btnAmigos"
-                app:layout_constraintStart_toEndOf="@+id/btnRelacionamentos"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/txtFamilia"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3"
+                android:layout_marginTop="16dp"> <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/familia"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnFamilia"
-                app:layout_constraintStart_toStartOf="@+id/btnFamilia"
-                app:layout_constraintTop_toBottomOf="@+id/btnFamilia" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="4dp">
 
-            <ImageButton
-                android:id="@+id/btnAmigos"
-                android:layout_width="65dp"
-                android:layout_height="63dp"
-                android:background="@drawable/bg_button_rounded"
-                android:contentDescription="@string/amigos"
-                android:src="@drawable/ic_amigos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnFamilia"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageButton
+                    android:id="@+id/btnViagens"
+                    android:layout_width="65dp"
+                    android:layout_height="62dp"
+                    android:background="@drawable/bg_button_rounded"
+                    android:contentDescription="@string/viagens"
+                    android:src="@drawable/ic_aviao" />
 
-            <TextView
-                android:id="@+id/txtAmigos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/amigos"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnAmigos"
-                app:layout_constraintStart_toStartOf="@+id/btnAmigos"
-                app:layout_constraintTop_toBottomOf="@+id/btnAmigos" />
+                <TextView
+                    android:id="@+id/txtViagens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/viagens"
+                    android:textColor="#616161"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btnViagens"
-                android:layout_width="65dp"
-                android:layout_height="62dp"
-                android:background="@drawable/bg_button_rounded"
-                android:contentDescription="@string/viagens"
-                android:src="@drawable/ic_aviao"
-                app:layout_constraintBottom_toBottomOf="@+id/btnMetas"
-                app:layout_constraintStart_toStartOf="@+id/btnRelacionamentos"
-                app:layout_constraintTop_toTopOf="@+id/btnMetas" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-            <TextView
-                android:id="@+id/txtViagens"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/viagens"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnViagens"
-                app:layout_constraintStart_toStartOf="@+id/btnViagens"
-                app:layout_constraintTop_toBottomOf="@+id/btnViagens" />
+                    <ImageButton
+                        android:id="@+id/btnMetas"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/bg_button_rounded"
+                        android:contentDescription="@string/metas"
+                        android:src="@drawable/ic_metas" />
 
-            <ImageButton
-                android:id="@+id/btnMetas"
-                android:layout_width="65dp"
-                android:layout_height="63dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_button_rounded"
-                android:contentDescription="@string/metas"
-                android:src="@drawable/ic_metas"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnMais"
-                app:layout_constraintStart_toEndOf="@+id/btnViagens"
-                app:layout_constraintTop_toBottomOf="@+id/txtFamilia" />
+                    <TextView
+                        android:id="@+id/txtMetas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/metas"
+                        android:textColor="#616161"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtMetas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/metas"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnMetas"
-                app:layout_constraintStart_toStartOf="@+id/btnMetas"
-                app:layout_constraintTop_toBottomOf="@+id/btnMetas" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-            <ImageButton
-                android:id="@+id/btnMais"
-                android:layout_width="65dp"
-                android:layout_height="63dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_button_rounded"
-                android:contentDescription="@string/novo"
-                android:src="@drawable/ic_mais"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnMetas"
-                app:layout_constraintTop_toBottomOf="@+id/txtAmigos" />
+                    <ImageButton
+                        android:id="@+id/btnMais"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/bg_button_rounded"
+                        android:contentDescription="@string/novo"
+                        android:src="@drawable/ic_mais" />
 
-            <TextView
-                android:id="@+id/txtNovo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/novo"
-                android:textColor="#616161"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@+id/btnMais"
-                app:layout_constraintStart_toStartOf="@+id/btnMais"
-                app:layout_constraintTop_toBottomOf="@+id/btnMais" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/txtNovo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/novo"
+                        android:textColor="#616161"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -205,44 +239,46 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingVertical="12dp"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:weightSum="4"> <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="4dp">
 
-            <LinearLayout
+            <ImageButton
+                android:id="@+id/btnTexto"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_button_rounded"
+                android:onClick="abrirCamera"
+                android:contentDescription="@string/texto"
+                android:src="@drawable/ic_text" />
+
+            <TextView
+                android:id="@+id/txtTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/texto"
+                android:textColor="#616161"
+                android:textSize="10sp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btnTexto"
-                    android:layout_width="55dp"
-                    android:layout_height="45dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="@drawable/bg_button_rounded"
-                    android:onClick="abrirCamera"
-                    android:contentDescription="@string/texto"
-                    android:src="@drawable/ic_text" />
-
-                <TextView
-                    android:id="@+id/txtTexto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/texto"
-                    android:textColor="#616161"
-                    android:textSize="10sp" />
-            </LinearLayout>
+                android:maxLines="2" />
+        </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
 
                 <ImageButton
                     android:id="@+id/btnFoto"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/bg_button_rounded"
                     android:contentDescription="@string/camera"
                     android:src="@drawable/ic_foto" />
@@ -253,20 +289,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/camera"
                     android:textColor="#616161"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
 
                 <ImageButton
                     android:id="@+id/btnVideo"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/bg_button_rounded"
                     android:contentDescription="@string/video"
                     android:src="@drawable/ic_video" />
@@ -277,20 +316,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/video"
                     android:textColor="#616161"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
 
                 <ImageButton
                     android:id="@+id/btnAudio"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/bg_button_rounded"
                     android:onClick="gravarAudio"
                     android:contentDescription="@string/audio"
@@ -302,7 +344,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/audio"
                     android:textColor="#616161"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
             </LinearLayout>
 
         </LinearLayout>
