@@ -5,253 +5,273 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradrient"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".activity_cadastro"> <androidx.cardview.widget.CardView
+    android:id="@+id/main_cadastro_card"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="7dp"
+    app:layout_constraintHeight_percent="0.9"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Card branco com sombra -->
-
-    <!-- Elipses e ícone superior -->
-
-    <View
-        android:id="@+id/shadow_layer"
-        style="@style/container"
-        android:layout_width="335dp"
-        android:layout_height="650dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/ellipse_white"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view4"
-        android:layout_width="97dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/ellipse_blue"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toTopOf="@id/view3" />
-
-    <View
-        android:id="@+id/view7"
-        android:layout_width="47dp"
-        android:layout_height="23dp"
-        android:background="@drawable/rounded_rect"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:background="@drawable/ellipse_white"
-        app:layout_constraintBottom_toBottomOf="@id/view4"
-        app:layout_constraintEnd_toEndOf="@id/view3"
-        app:layout_constraintStart_toStartOf="@id/view3"
-        app:layout_constraintTop_toTopOf="@id/view3" />
-
-    <!-- Título -->
-
-    <!-- Campos de cadastro -->
-
-    <TextView
-        android:id="@+id/title"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
-        android:gravity="center"
-        android:text="Cadastre-se"
-        android:textColor="#50B2DD"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view3" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/nome"
-        android:layout_width="266dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_edittext"
-        android:textColorHint="#616161"
-        android:textColor="#000000"
-        android:padding="8dp"
-        android:hint="Digite seu nome completo"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="266dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_edittext"
-        android:hint="Digite seu email"
-        android:textSize="12sp"
-        android:padding="8dp"
-        android:textColorHint="#616161"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/nome" />
+            <View
+                android:id="@+id/view_circle_large"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/ellipse_white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/senha"
-        android:layout_width="266dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_edittext"
-        android:hint="Criar senha"
-        android:inputType="textPassword"
-        android:textSize="12sp"
-        android:padding="8dp"
-        android:textColorHint="#616161"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/email" />
+            <View
+                android:id="@+id/view_circle_medium"
+                android:layout_width="97dp"
+                android:layout_height="97dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ellipse_blue"
+                app:layout_constraintTop_toTopOf="@id/view_circle_large"
+                app:layout_constraintStart_toStartOf="@id/view_circle_large"
+                app:layout_constraintEnd_toEndOf="@id/view_circle_large" />
 
-    <EditText
-        android:id="@+id/confirmaSenha"
-        android:layout_width="266dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_edittext"
-        android:hint="Confirmar senha"
-        android:inputType="textPassword"
-        android:textSize="12sp"
-        android:padding="8dp"
-        android:textColorHint="#616161"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/senha" />
+            <View
+                android:id="@+id/view_circle_small"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/ellipse_white"
+                app:layout_constraintTop_toTopOf="@id/view_circle_medium"
+                app:layout_constraintBottom_toBottomOf="@id/view_circle_medium"
+                app:layout_constraintStart_toStartOf="@id/view_circle_medium"
+                app:layout_constraintEnd_toEndOf="@id/view_circle_medium" />
 
-    <!-- Ícones nos campos -->
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Ícone de usuário"
-        android:src="@drawable/ic_user1"
-        app:layout_constraintBottom_toBottomOf="@id/nome"
-        app:layout_constraintEnd_toStartOf="@id/nome"
-        app:layout_constraintTop_toTopOf="@id/nome" />
+            <View
+                android:id="@+id/view_rounded_rect"
+                android:layout_width="47dp"
+                android:layout_height="23dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_rect"
+                app:layout_constraintBottom_toBottomOf="@id/view_circle_medium"
+                app:layout_constraintStart_toStartOf="@id/view_circle_medium"
+                app:layout_constraintEnd_toEndOf="@id/view_circle_medium" />
 
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Ícone de e-mail"
-        android:src="@drawable/ic_email"
-        app:layout_constraintBottom_toBottomOf="@id/email"
-        app:layout_constraintEnd_toStartOf="@id/email"
-        app:layout_constraintTop_toTopOf="@id/email" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Cadastre-se" android:textColor="#50B2DD"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/view_circle_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Ícone de senha"
-        android:src="@drawable/ic_key"
-        app:layout_constraintBottom_toBottomOf="@id/senha"
-        app:layout_constraintEnd_toStartOf="@id/senha"
-        app:layout_constraintTop_toTopOf="@id/senha" />
+            <LinearLayout
+                android:id="@+id/nome_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="Ícone confirmar senha"
-        android:src="@drawable/ic_key2"
-        app:layout_constraintBottom_toBottomOf="@id/confirmaSenha"
-        app:layout_constraintEnd_toStartOf="@id/confirmaSenha"
-        app:layout_constraintTop_toTopOf="@id/confirmaSenha" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_user1"
+                    android:contentDescription="Ícone de usuário" android:paddingEnd="8dp" />
 
-    <!-- Botão de cadastro -->
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="170dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#50B2DD"
-        android:text="Cadastrar"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/confirmaSenha" />
+                <EditText
+                    android:id="@+id/nome"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Digite seu nome completo" android:inputType="textPersonName|textCapWords"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#616161"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-    <!-- Divisor "ou" -->
-    <View
-        android:layout_width="78dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="#A1A0A0"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/btnCadastrar" />
+            <LinearLayout
+                android:id="@+id/email_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/nome_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="ou"
-        android:textColor="#A1A0A0"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/btnCadastrar" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_email"
+                    android:contentDescription="Ícone de e-mail" android:paddingEnd="8dp" />
 
-    <View
-        android:layout_width="78dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="#A1A0A0"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/btnCadastrar" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Digite seu email" android:inputType="textEmailAddress"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#616161"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
-    <!-- Botão Google -->
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Botão de cadastro com Google"
-        android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+            <LinearLayout
+                android:id="@+id/password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/email_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Link para login -->
-    <TextView
-        android:id="@+id/cadastrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Já possui uma conta? Login"
-        android:textColor="@color/black"
-        android:textSize="9sp"
-        app:layout_constraintEnd_toEndOf="@id/shadow_layer"
-        app:layout_constraintStart_toStartOf="@id/shadow_layer"
-        app:layout_constraintTop_toBottomOf="@id/imageView8" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_key"
+                    android:contentDescription="Ícone de senha" android:paddingEnd="8dp" />
 
+                <EditText
+                    android:id="@+id/senha"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Criar senha" android:inputType="textPassword"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#616161"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/confirmar_senha_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/password_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_key2"
+                    android:contentDescription="Ícone confirmar senha" android:paddingEnd="8dp" />
+
+                <EditText
+                    android:id="@+id/confirmaSenha"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="Confirmar senha" android:inputType="textPassword"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#616161"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="#50B2DD"
+                android:text="Cadastrar" android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintTop_toBottomOf="@id/confirmar_senha_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/or_divider_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toBottomOf="@id/btnCadastrar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#A1A0A0" />
+
+                <TextView
+                    android:id="@+id/textView_ou" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="ou" android:textColor="#A1A0A0"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#A1A0A0" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/google_register_icon" android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_google"
+                android:contentDescription="Botão de cadastro com Google" app:layout_constraintTop_toBottomOf="@id/or_divider_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/login_link" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Já possui uma conta? Login" android:textColor="#000000"
+                android:textSize="14sp" android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/google_register_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
