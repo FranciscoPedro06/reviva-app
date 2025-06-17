@@ -57,10 +57,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:paddingHorizontal="4dp"> <ImageButton
+                android:paddingHorizontal="4dp">
+
+                <ImageButton
                 android:id="@+id/btnRelacionamentos"
                 android:layout_width="65dp" android:layout_height="62dp"
-                android:background="@drawable/bg_button_rounded"
+                android:background="@drawable/botao_selector"
                 android:contentDescription="@string/relacionamentos"
                 android:src="@drawable/ic_coracao" />
 
@@ -86,7 +88,7 @@
                         android:id="@+id/btnFamilia"
                         android:layout_width="65dp"
                         android:layout_height="63dp"
-                        android:background="@drawable/bg_button_rounded"
+                        android:background="@drawable/botao_selector"
                         android:contentDescription="@string/familia"
                         android:src="@drawable/ic_familia" />
 
@@ -113,7 +115,7 @@
                         android:id="@+id/btnAmigos"
                         android:layout_width="65dp"
                         android:layout_height="63dp"
-                        android:background="@drawable/bg_button_rounded"
+                        android:background="@drawable/botao_selector"
                         android:contentDescription="@string/amigos"
                         android:src="@drawable/ic_amigos" />
 
@@ -147,7 +149,7 @@
                     android:id="@+id/btnViagens"
                     android:layout_width="65dp"
                     android:layout_height="62dp"
-                    android:background="@drawable/bg_button_rounded"
+                    android:background="@drawable/botao_selector"
                     android:contentDescription="@string/viagens"
                     android:src="@drawable/ic_aviao" />
 
@@ -174,7 +176,7 @@
                         android:id="@+id/btnMetas"
                         android:layout_width="65dp"
                         android:layout_height="63dp"
-                        android:background="@drawable/bg_button_rounded"
+                        android:background="@drawable/botao_selector"
                         android:contentDescription="@string/metas"
                         android:src="@drawable/ic_metas" />
 
@@ -201,7 +203,7 @@
                         android:id="@+id/btnMais"
                         android:layout_width="65dp"
                         android:layout_height="63dp"
-                        android:background="@drawable/bg_button_rounded"
+                        android:background="@drawable/botao_selector"
                         android:contentDescription="@string/novo"
                         android:src="@drawable/ic_mais" />
 
@@ -250,7 +252,6 @@
                 android:layout_width="55dp"
                 android:layout_height="45dp"
                 android:background="@drawable/bg_button_rounded"
-                android:onClick="abrirCamera"
                 android:contentDescription="@string/texto"
                 android:src="@drawable/ic_text" />
 
@@ -332,7 +333,6 @@
                     android:layout_width="55dp"
                     android:layout_height="45dp"
                     android:background="@drawable/bg_button_rounded"
-                    android:onClick="gravarAudio"
                     android:contentDescription="@string/audio"
                     android:src="@drawable/ic_mic" />
 

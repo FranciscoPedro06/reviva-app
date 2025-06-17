@@ -13,7 +13,6 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,6 +26,7 @@ import com.reviva.app.utils.StorageUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class MemoriaActivity extends AppCompatActivity {
@@ -35,9 +35,11 @@ public class MemoriaActivity extends AppCompatActivity {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 2001;
     private static final int PICK_AUDIO_REQUEST = 2002;
     private static final int PICK_VIDEO_REQUEST = 1003;
+    private static final int PICK_DOCUMENT_REQUEST = 1234;
 
 
     private ImageButton btnMenu, btnTexto, btnFoto, btnVideo, btnAudio;
+    private ImageButton btnRelacionamentos, btnFamilia, btnAmigos, btnViagens, btnMetas, btnMais;
     private Button btnSalvar, btnCancelar;
     private EditText edtTituloMemoria, edtDescricao, edtVisualizarEm;
     private Uri selectedImageUri;
@@ -45,6 +47,9 @@ public class MemoriaActivity extends AppCompatActivity {
     private MediaRecorder mediaRecorder;
     private String audioFilePath;
     private Uri selectedVideoUri;
+    private Uri selectedDocumentUri;
+    private String categoriaSelecionada = null;
+    private ImageButton botaoAtualSelecionado = null;
 
 
     @Override
@@ -72,9 +77,22 @@ public class MemoriaActivity extends AppCompatActivity {
         btnCancelar = findViewById(R.id.btnCancelar);
         edtDescricao = findViewById(R.id.edtDescricao);
         edtVisualizarEm = findViewById(R.id.edtVisualizarEm);
+        btnRelacionamentos = findViewById(R.id.btnRelacionamentos);
+        btnFamilia = findViewById(R.id.btnFamilia);
+        btnAmigos = findViewById(R.id.btnAmigos);
+        btnViagens = findViewById(R.id.btnViagens);
+        btnMetas = findViewById(R.id.btnMetas);
+        btnMais = findViewById(R.id.btnMais);
 
         btnMenu.setOnClickListener(v -> Toast.makeText(this, "Menu selecionado", Toast.LENGTH_SHORT).show());
-        btnTexto.setOnClickListener(v -> Toast.makeText(this, "Texto selecionado", Toast.LENGTH_SHORT).show());
+
+        btnTexto.setOnClickListener(v -> {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent.setType("*/*");
+                    startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
+                });
+
 
         btnFoto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -90,6 +108,28 @@ public class MemoriaActivity extends AppCompatActivity {
 
         btnAudio.setOnClickListener(v -> showAudioOptions());
 
+        btnRelacionamentos.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnRelacionamentos, "relacionamentos");
+        });
+
+        btnFamilia.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnFamilia, "família");
+        });
+        btnAmigos.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnAmigos, "amigos");
+        });
+        btnViagens.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnViagens, "viagens");
+        });
+        btnMetas.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnMetas, "metas");
+        });
+        btnMais.setOnClickListener(v -> {
+            alternarSelecaoBotao(btnMais, "mais");
+        });
+
+
+
         btnSalvar.setOnClickListener(v -> salvarMemoria());
 
         btnCancelar.setOnClickListener(v -> {
@@ -102,9 +142,52 @@ public class MemoriaActivity extends AppCompatActivity {
             selectedImageUri = null;
             selectedAudioUri = null;
             selectedVideoUri = null;
+            botaoAtualSelecionado = null;
+            categoriaSelecionada = null;
+
+            desmarcarTodosBotoes();
+            //FirebaseManager.getInstance().signOut();
+            //finish();
         });
 
     }
+
+    private void alternarSelecaoBotao(ImageButton botao, String categoria) {
+        if (botao.equals(botaoAtualSelecionado)) {
+            // Desmarcar
+            botao.setSelected(false);
+            botaoAtualSelecionado = null;
+            categoriaSelecionada = null;
+        } else {
+            // Marcar novo botão e desmarcar os outros
+            desmarcarTodosBotoes();
+
+            botao.setSelected(true);
+            botaoAtualSelecionado = botao;
+            categoriaSelecionada = categoria;
+        }
+    }
+
+    private void desmarcarTodosBotoes() {
+        btnRelacionamentos.setSelected(false);
+        btnFamilia.setSelected(false);
+        btnAmigos.setSelected(false);
+        btnViagens.setSelected(false);
+        btnMetas.setSelected(false);
+        btnMais.setSelected(false);
+    }
+
+    private boolean isDataValida(String data) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+            sdf.parse(data);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     private void showAudioOptions() {
         String[] options = {"Gravar Áudio", "Selecionar Áudio"};
@@ -180,25 +263,72 @@ public class MemoriaActivity extends AppCompatActivity {
         }else if (edtVisualizarEm.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Preencha o campo de visualização", Toast.LENGTH_SHORT).show();
             return;
+        } else {
+            String data = edtVisualizarEm.getText().toString().trim();
+            if (!isDataValida(data)) {
+                Toast.makeText(this, "Digite uma data válida no formato dd/MM/yyyy", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
+
 
         String userId = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
         if (selectedImageUri != null) {
             salvarImagem(titulo, userId);
-            Toast.makeText(this, "Imagem selecionada", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedAudioUri != null) {
             salvarAudio(titulo, userId);
-            Toast.makeText(this, "Áudio selecionado", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedVideoUri != null) {
             salvarVideo(titulo, userId);
-            Toast.makeText(this, "Vídeo selecionado", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
+        } else if (selectedDocumentUri != null) {
+            salvarDocumento(titulo, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else {
             Toast.makeText(this, "Selecione um tipo de momória!", Toast.LENGTH_SHORT).show();
         }
+
     }
+
+    private void salvarDocumento(String titulo, String userId) {
+        byte[] documentBytes = StorageUtils.readFileUriToByteArray(this, selectedDocumentUri);
+
+        if (documentBytes == null) {
+            Toast.makeText(this, "Erro ao processar documento", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String extension = getFileExtensionFromUri(selectedDocumentUri);
+        String fileName = "users/" + userId + "/memories/" + UUID.randomUUID() + (extension != null ? "." + extension : "");
+
+
+        FirebaseManager.getInstance().uploadFile(documentBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
+            @Override
+            public void onSuccess(String downloadUrl) {
+                salvarNoFirestore(titulo, userId, downloadUrl, "document");
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(MemoriaActivity.this, "Erro no upload do documento", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProgress(double progress) {}
+        });
+    }
+
+    private String getFileExtensionFromUri(Uri uri) {
+        String extension = null;
+        String mimeType = getContentResolver().getType(uri);
+        if (mimeType != null) {
+            extension = android.webkit.MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType);
+        }
+        return extension;
+    }
+
+
 
     private void salvarImagem(String titulo, String userId) {
         byte[] imageBytes = StorageUtils.convertImageUriToByteArray(this, selectedImageUri);
@@ -297,6 +427,8 @@ public class MemoriaActivity extends AppCompatActivity {
         memory.setCreatedAt(System.currentTimeMillis());
         memory.setUnlockAt(System.currentTimeMillis());
         memory.setUnlocked(true);
+        memory.setCategoria(categoriaSelecionada);
+
 
         FirebaseManager.getInstance().saveMemory(memory, new FirebaseManager.OnCompleteListener() {
             @Override
@@ -313,20 +445,33 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_AUDIO_REQUEST && resultCode == RESULT_OK && data != null) {
-            selectedAudioUri = data.getData();
-            Toast.makeText(this, "Áudio selecionado", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            selectedImageUri = data.getData();
-            Toast.makeText(this, "Imagem selecionada", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == PICK_VIDEO_REQUEST && resultCode == RESULT_OK && data != null) {
-            selectedVideoUri = data.getData();
-            Toast.makeText(this, "Vídeo selecionado", Toast.LENGTH_SHORT).show();
-        }
 
+        if (resultCode != RESULT_OK || data == null) return;
+
+        Uri uri = data.getData();
+
+        switch (requestCode) {
+            case PICK_DOCUMENT_REQUEST:
+                selectedDocumentUri = uri;
+                Toast.makeText(this, "Documento selecionado", Toast.LENGTH_SHORT).show();
+                break;
+            case PICK_AUDIO_REQUEST:
+                selectedAudioUri = uri;
+                Toast.makeText(this, "Áudio selecionado", Toast.LENGTH_SHORT).show();
+                break;
+            case PICK_IMAGE_REQUEST:
+                selectedImageUri = uri;
+                Toast.makeText(this, "Imagem selecionada", Toast.LENGTH_SHORT).show();
+                break;
+            case PICK_VIDEO_REQUEST:
+                selectedVideoUri = uri;
+                Toast.makeText(this, "Vídeo selecionado", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

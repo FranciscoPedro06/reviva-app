@@ -5,6 +5,7 @@ public class Memory {
     private String userId;
     private String title;
     private String description;
+    private String categoria;
     private String mediaUrl;
     private String mediaType;
     private long createdAt;
@@ -15,12 +16,13 @@ public class Memory {
     public Memory() {}
 
 
-    public Memory(String memoryId, String userId, String title, String description,
+    public Memory(String memoryId, String userId, String title, String description, String categoria,
                   String mediaUrl, String mediaType, long createdAt, long unlockAt, boolean isUnlocked) {
         this.memoryId = memoryId;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.categoria = categoria;
         this.mediaUrl = mediaUrl;
         this.mediaType = mediaType;
         this.createdAt = createdAt;
@@ -44,6 +46,8 @@ public class Memory {
     public String getDescription() {
         return description;
     }
+
+    public String getCategoria() { return categoria; }
 
     public String getMediaUrl() {
         return mediaUrl;
@@ -101,4 +105,7 @@ public class Memory {
     public void setUnlocked(boolean unlocked) {
         isUnlocked = unlocked;
     }
+
+    public void setCategoria(String categoria) { this.categoria = categoria; }
+
 }
