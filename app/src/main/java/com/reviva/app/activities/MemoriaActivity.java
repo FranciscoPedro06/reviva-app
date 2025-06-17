@@ -39,7 +39,7 @@ public class MemoriaActivity extends AppCompatActivity {
 
     private ImageButton btnMenu, btnTexto, btnFoto, btnVideo, btnAudio;
     private Button btnSalvar, btnCancelar;
-    private EditText edtTituloMemoria;
+    private EditText edtTituloMemoria, edtDescricao, edtVisualizarEm;
     private Uri selectedImageUri;
     private Uri selectedAudioUri;
     private MediaRecorder mediaRecorder;
@@ -70,6 +70,8 @@ public class MemoriaActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         edtTituloMemoria = findViewById(R.id.edtTituloMemoria);
         btnCancelar = findViewById(R.id.btnCancelar);
+        edtDescricao = findViewById(R.id.edtDescricao);
+        edtVisualizarEm = findViewById(R.id.edtVisualizarEm);
 
         btnMenu.setOnClickListener(v -> Toast.makeText(this, "Menu selecionado", Toast.LENGTH_SHORT).show());
         btnTexto.setOnClickListener(v -> Toast.makeText(this, "Texto selecionado", Toast.LENGTH_SHORT).show());
@@ -92,6 +94,11 @@ public class MemoriaActivity extends AppCompatActivity {
 
         btnCancelar.setOnClickListener(v -> {
             edtTituloMemoria.setText("");
+            edtTituloMemoria.clearFocus();
+            edtDescricao.setText("");
+            edtDescricao.clearFocus();
+            edtVisualizarEm.setText("");
+            edtVisualizarEm.clearFocus();
             selectedImageUri = null;
             selectedAudioUri = null;
             selectedVideoUri = null;
@@ -163,8 +170,15 @@ public class MemoriaActivity extends AppCompatActivity {
 
     private void salvarMemoria() {
         String titulo = edtTituloMemoria.getText().toString().trim();
-        if (titulo.isEmpty()) {
+
+        if (titulo.isEmpty() && edtVisualizarEm.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Preencha o título e o campo de visualização", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (titulo.isEmpty()) {
             Toast.makeText(this, "Preencha o título da memória", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (edtVisualizarEm.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Preencha o campo de visualização", Toast.LENGTH_SHORT).show();
             return;
         }
 

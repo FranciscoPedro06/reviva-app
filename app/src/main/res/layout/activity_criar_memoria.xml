@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D7F6FF"
-    tools:context=".activity_criar_memoria">
+    tools:context=".activities.MemoriaActivity">
 
     <ImageButton
         android:id="@+id/btnMenu"
@@ -26,7 +26,6 @@
         android:textColor="#000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVoltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -395,7 +394,6 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_edittext"
         android:clickable="true"
-        android:focusable="false"
         android:hint="@string/visualizar"
         android:minHeight="48dp"
         android:paddingEnd="12dp"
