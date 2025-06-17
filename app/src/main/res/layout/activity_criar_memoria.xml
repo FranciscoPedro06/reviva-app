@@ -251,7 +251,7 @@
                 android:id="@+id/btnTexto"
                 android:layout_width="55dp"
                 android:layout_height="45dp"
-                android:background="@drawable/bg_button_rounded"
+                android:background="@drawable/botao_selector"
                 android:contentDescription="@string/texto"
                 android:src="@drawable/ic_text" />
 
@@ -278,7 +278,7 @@
                     android:id="@+id/btnFoto"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_button_rounded"
+                    android:background="@drawable/botao_selector"
                     android:contentDescription="@string/camera"
                     android:src="@drawable/ic_foto" />
 
@@ -305,7 +305,7 @@
                     android:id="@+id/btnVideo"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_button_rounded"
+                    android:background="@drawable/botao_selector"
                     android:contentDescription="@string/video"
                     android:src="@drawable/ic_video" />
 
@@ -332,7 +332,7 @@
                     android:id="@+id/btnAudio"
                     android:layout_width="55dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/bg_button_rounded"
+                    android:background="@drawable/botao_selector"
                     android:contentDescription="@string/audio"
                     android:src="@drawable/ic_mic" />
 

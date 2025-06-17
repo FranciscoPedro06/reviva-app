@@ -84,13 +84,18 @@ public class MemoriaActivity extends AppCompatActivity {
         btnMetas = findViewById(R.id.btnMetas);
         btnMais = findViewById(R.id.btnMais);
 
-        btnMenu.setOnClickListener(v -> Toast.makeText(this, "Menu selecionado", Toast.LENGTH_SHORT).show());
+        /*btnMenu.setOnClickListener(v ->
+                Toast.makeText(this, "Menu selecionado", Toast.LENGTH_SHORT).show()
+                //FirebaseManager.getInstance().signOut();
+                //finish();
+                );*/
 
         btnTexto.setOnClickListener(v -> {
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("*/*");
                     startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
+                    alternarSelecaoBotao(btnTexto, "texto");
                 });
 
 
@@ -98,15 +103,20 @@ public class MemoriaActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
+            alternarSelecaoBotao(btnFoto, "imagem");
         });
 
         btnVideo.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("video/*");
                 startActivityForResult(intent, PICK_VIDEO_REQUEST);
+                alternarSelecaoBotao(btnVideo, "video");
         });
 
-        btnAudio.setOnClickListener(v -> showAudioOptions());
+        btnAudio.setOnClickListener(v -> {
+            showAudioOptions();
+            alternarSelecaoBotao(btnAudio, "audio");
+        });
 
         btnRelacionamentos.setOnClickListener(v -> {
             alternarSelecaoBotao(btnRelacionamentos, "relacionamentos");
@@ -146,20 +156,18 @@ public class MemoriaActivity extends AppCompatActivity {
             categoriaSelecionada = null;
 
             desmarcarTodosBotoes();
-            //FirebaseManager.getInstance().signOut();
-            //finish();
         });
 
     }
 
     private void alternarSelecaoBotao(ImageButton botao, String categoria) {
         if (botao.equals(botaoAtualSelecionado)) {
-            // Desmarcar
+
             botao.setSelected(false);
             botaoAtualSelecionado = null;
             categoriaSelecionada = null;
         } else {
-            // Marcar novo botão e desmarcar os outros
+
             desmarcarTodosBotoes();
 
             botao.setSelected(true);
@@ -175,6 +183,10 @@ public class MemoriaActivity extends AppCompatActivity {
         btnViagens.setSelected(false);
         btnMetas.setSelected(false);
         btnMais.setSelected(false);
+        btnTexto.setSelected(false);
+        btnFoto.setSelected(false);
+        btnVideo.setSelected(false);
+        btnAudio.setSelected(false);
     }
 
     private boolean isDataValida(String data) {
