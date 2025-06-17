@@ -22,6 +22,8 @@ public class ViewMemoriaActivity extends AppCompatActivity {
     private TextView titleMemory, dateMemory, contentMemory, btnDelete;
     private ImageView imageMemory;
 
+    private static final int REQUEST_DELETE_CONFIRM = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class ViewMemoriaActivity extends AppCompatActivity {
         String mediaUrl = intent.getStringExtra("image");
         String mediaType = intent.getStringExtra("mediaType");
 
-        // Opcional: mostrar a data de desbloqueio
+        // Data de desbloqueio
         long unlockAt = intent.getLongExtra("unlockAt", 0);
         String dataFormatada = unlockAt > 0
                 ? new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date(unlockAt))
@@ -52,7 +54,7 @@ public class ViewMemoriaActivity extends AppCompatActivity {
         contentMemory.setText(descricao != null ? descricao : "");
         dateMemory.setText(!dataFormatada.isEmpty() ? "Desbloqueio: " + dataFormatada : "");
 
-        // Exibir imagem (se tipo for imagem)
+        // Exibir imagem
         if (mediaType != null && mediaType.equals("image")) {
             imageMemory.setVisibility(ImageView.VISIBLE);
             if (mediaUrl != null && !mediaUrl.isEmpty()) {
@@ -73,14 +75,25 @@ public class ViewMemoriaActivity extends AppCompatActivity {
             imageMemory.setImageResource(R.drawable.ampulhe);
         }
 
-        // Ações
+        // Botão voltar
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        // Botão deletar com confirmação
         btnDelete.setOnClickListener(v -> {
+            Intent confirmIntent = new Intent(ViewMemoriaActivity.this, DeleteConfirmacaoActivity.class);
+            startActivityForResult(confirmIntent, REQUEST_DELETE_CONFIRM);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_DELETE_CONFIRM && resultCode == RESULT_OK) {
             Intent result = new Intent();
             result.putExtra("delete", true);
             setResult(RESULT_OK, result);
             finish();
-        });
-
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        }
     }
 }
