@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="411dp"
+    android:layout_height="891dp"
+    android:background="#50B2DD">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvConfirmTitle"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="Tem certeza que deseja apagar esta memória?"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:fontFamily="@font/poppins_regular"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp" />
+
+    <!-- Elipse branca -->
+    <View
+        android:id="@+id/ellipseWhite"
+        android:layout_width="213dp"
+        android:layout_height="213dp"
+        android:background="@drawable/ellipse_white_rounded"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="300dp" />
+
+    <!-- Ícone de exclamação (exemplo, pode ser um ImageView se tiver drawable) -->
+    <ImageView
+        android:id="@+id/imgExclamation"
+        android:layout_width="71dp"
+        android:layout_height="189dp"
+        android:src="@drawable/fa_solid_exclamation"
+        app:layout_constraintTop_toTopOf="@id/ellipseWhite"
+        app:layout_constraintBottom_toBottomOf="@id/ellipseWhite"
+        app:layout_constraintStart_toStartOf="@id/ellipseWhite"
+        app:layout_constraintEnd_toEndOf="@id/ellipseWhite" />
+
+    <!-- Botão NÃO -->
+    <Button
+        android:id="@+id/btnYes"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Sim"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="#616161"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toBottomOf="@id/ellipseWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="45dp" />
+
+    <!-- Botão SIM -->
+    <Button
+        android:id="@+id/btnNo"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Não"
+        android:textColor="#50B2DD"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="#FFFFFF"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toBottomOf="@id/ellipseWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="45dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
