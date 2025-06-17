@@ -6,6 +6,7 @@
     <string name="login">Login</string>
     <string name="email">Digite seu email</string>
     <string name="senha">Digite sua senha</string>
+    <string name="esqueci_senha">Esqueci minha senha</string>
     <string name="ou">ou</string>
     <string name="cadastro">Ainda não possui uma conta? Cadastre-se</string>
     <string name="cadastre">Cadastre-se</string>
@@ -44,4 +45,7 @@
     <string name="cancelamento">Cancelar</string>
     <string name="salvamento">Salvar</string>
     <string name="futuro">Memória do Futuro</string>
+    <string name="email_icon_description">Ícone de e-mail</string>
+    <string name="password_icon_description">Ícone de senha</string>
+    <string name="google_login_description">Botão para login com Google</string>
 </resources>
