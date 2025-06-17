@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="padding_screen">16dp</dimen>
+    <dimen name="square_size">90dp</dimen>   <!-- quadradinhos de tópico -->
+    <dimen name="square_radius">12dp</dimen>
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_small">13sp</dimen>
+    <dimen name="corner_card">20dp</dimen>
+</resources>
