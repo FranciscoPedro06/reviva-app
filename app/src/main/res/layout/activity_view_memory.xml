@@ -66,7 +66,6 @@
             android:layout_height="198dp"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/aniversario_35"
             android:background="@drawable/rounded_corners_12dp"/>
 
         <!-- Data -->
