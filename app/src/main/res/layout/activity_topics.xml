@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="410dp"
+    android:layout_height="890dp"
+    android:background="#D7F6FF"
+    android:padding="0dp">
+
+    <!-- Botão Voltar -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="56dp"
+        android:background="@null"
+        android:src="@drawable/ic_back_black"
+        android:contentDescription="Voltar" />
+
+    <!-- Título "Tópicos" -->
+    <TextView
+        android:id="@+id/tituloTopicos"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Tópicos"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="#000000" />
+
+    <!-- Caixa branca principal -->
+    <LinearLayout
+        android:id="@+id/conteudo"
+        android:layout_width="301dp"
+        android:layout_height="463dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:background="@drawable/rounded_white_16dp"
+        android:orientation="vertical">
+
+        <!-- Relacionamento -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_relationship" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Relacionamento"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Família -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_family" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Família"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Amigos -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_friends" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Amigos"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Viagens -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_travel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Viagens"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Metas Futuras -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_goals" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Metas Futuras"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Criar Tópico -->
+        <LinearLayout
+            android:layout_width="259dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_lightblue_8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_add_topic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Criar Tópico"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Botão "Ver memórias deste tópico" -->
+    <LinearLayout
+        android:id="@+id/btnVerMemorias"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="668dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_white_8dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver memórias deste tópico"
+            android:textSize="14sp"
+            android:textColor="#616161"
+            android:fontFamily="@font/poppins_semibold" />
+    </LinearLayout>
+
+    <!-- Botão "Criar nova memória para este tópico" -->
+    <LinearLayout
+        android:id="@+id/btnCriarMemoria"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="734dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_blue_8dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criar nova memória para este tópico"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/poppins_semibold" />
+    </LinearLayout>
+
+</RelativeLayout>
