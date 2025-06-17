@@ -1,428 +1,442 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D7F6FF"
-    tools:context="activity_criar_memoria">
-
+    tools:context=".activities.MemoriaActivity">
 
     <ImageButton
-        android:id="@+id/btnVoltar"
+        android:id="@+id/btnMenu"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_margin="26dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/elliipse_white"
-        android:src="@drawable/ic_menu" />
+        android:src="@drawable/ic_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-      android:id="@+id/txtTitulo"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="24dp"
-      android:text="@string/criacao"
-      android:textSize="24sp"
-      android:textStyle="bold"
-      android:textColor="#000" />
-
-    <View
-        android:id="@+id/view7"
-        android:layout_width="307dp"
-        android:layout_height="186dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="46dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:radius="16dp" />
-
-    <ImageButton
-        android:layout_width="65dp"
-        android:layout_height="62dp"
-        android:layout_alignStart="@+id/view7"
-        android:layout_alignTop="@+id/view7"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="25dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_coracao" />/>
-
-    <TextView
+        android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="-347dp"
-        android:layout_marginEnd="146dp"
-        android:text="@string/relacionamentos"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+        android:layout_height="wrap_content"
+        android:text="@string/criacao"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_alignStart="@+id/view7"
-        android:layout_alignTop="@+id/view7"
-        android:layout_alignEnd="@+id/view7"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="122dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_familia" />/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCategorias"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="190dp"
-        android:layout_marginTop="-347dp"
-        android:layout_marginEnd="146dp"
-        android:text="@string/familia"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white">
 
-    <ImageButton
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_alignTop="@+id/view7"
-        android:layout_alignEnd="@+id/view7"
-        android:layout_marginStart="256dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_amigos" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3"> <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="4dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="285dp"
-        android:layout_marginTop="-348dp"
-        android:layout_marginEnd="-114dp"
-        android:text="@string/amigos"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                <ImageButton
+                android:id="@+id/btnRelacionamentos"
+                android:layout_width="65dp" android:layout_height="62dp"
+                android:background="@drawable/botao_selector"
+                android:contentDescription="@string/relacionamentos"
+                android:src="@drawable/ic_coracao" />
 
-    <ImageButton
-        android:layout_width="65dp"
-        android:layout_height="62dp"
-        android:layout_alignStart="@+id/view7"
-        android:layout_alignTop="@+id/view7"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="104dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_aviao" />
+                <TextView
+                    android:id="@+id/txtRelacionamentos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/relacionamentos"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" /> </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="-268dp"
-        android:layout_marginEnd="55dp"
-        android:text="@string/viagens"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-    <ImageButton
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_alignTop="@+id/view7"
-        android:layout_alignEnd="@+id/view7"
-        android:layout_marginStart="166dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginEnd="121dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_metas" />
+                    <ImageButton
+                        android:id="@+id/btnFamilia"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/familia"
+                        android:src="@drawable/ic_familia" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="195dp"
-        android:layout_marginTop="-268dp"
-        android:layout_marginEnd="-136dp"
-        android:text="@string/metas"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/txtFamilia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/familia"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
 
-    <ImageButton
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_alignTop="@+id/view7"
-        android:layout_alignEnd="@+id/view7"
-        android:layout_marginStart="258dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="27dp"
-        android:background="#CFF0FF"
-        android:radius="8dp"
-        android:src="@drawable/ic_mais" />
+                    <ImageButton
+                        android:id="@+id/btnAmigos"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/amigos"
+                        android:src="@drawable/ic_amigos" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="283dp"
-        android:layout_marginTop="-267dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/novo"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/txtAmigos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/amigos"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/layoutBotoes"
-        android:layout_width="307dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="334dp"
-        android:background="@drawable/bg_edittext"
-        android:gravity="center"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3"
+                android:layout_marginTop="16dp"> <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="4dp">
 
-        <ImageButton
-            android:id="@+id/btnTexto"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:onClick="abrirCamera"
-            android:src="@drawable/ic_text" />
+                <ImageButton
+                    android:id="@+id/btnViagens"
+                    android:layout_width="65dp"
+                    android:layout_height="62dp"
+                    android:background="@drawable/botao_selector"
+                    android:contentDescription="@string/viagens"
+                    android:src="@drawable/ic_aviao" />
 
-        <ImageButton
-            android:id="@+id/btnFoto"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:src="@drawable/ic_foto"
-            />
+                <TextView
+                    android:id="@+id/txtViagens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/viagens"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnVideo"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:src="@drawable/ic_video" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-        <ImageButton
-            android:id="@+id/btnAudio"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:onClick="gravarAudio"
-            android:src="@drawable/ic_mic" />
+                    <ImageButton
+                        android:id="@+id/btnMetas"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/metas"
+                        android:src="@drawable/ic_metas" />
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtMetas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/metas"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="94dp"
-        android:layout_marginTop="-151dp"
-        android:layout_marginEnd="199dp"
-        android:text="@string/texto"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="4dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="-150dp"
-        android:layout_marginEnd="44dp"
-        android:text="@string/camera"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                    <ImageButton
+                        android:id="@+id/btnMais"
+                        android:layout_width="65dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/novo"
+                        android:src="@drawable/ic_mais" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="235dp"
-        android:layout_marginTop="-150dp"
-        android:layout_marginEnd="-172dp"
-        android:text="@string/video"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/txtNovo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/novo"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="306dp"
-        android:layout_marginTop="-149dp"
-        android:layout_marginEnd="-71dp"
-        android:text="@string/audio"
-        android:textColor="#616161"
-        android:textSize="10sp" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBotoesMidia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardCategorias">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp"
+            android:background="@color/white"
+            android:weightSum="4"> <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="4dp">
+
+            <ImageButton
+                android:id="@+id/btnTexto"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:background="@drawable/botao_selector"
+                android:contentDescription="@string/texto"
+                android:src="@drawable/ic_text" />
+
+            <TextView
+                android:id="@+id/txtTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/texto"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:gravity="center_horizontal"
+                android:maxLines="2" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
+
+                <ImageButton
+                    android:id="@+id/btnFoto"
+                    android:layout_width="55dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/botao_selector"
+                    android:contentDescription="@string/camera"
+                    android:src="@drawable/ic_foto" />
+
+                <TextView
+                    android:id="@+id/txtCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/camera"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
+
+                <ImageButton
+                    android:id="@+id/btnVideo"
+                    android:layout_width="55dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/botao_selector"
+                    android:contentDescription="@string/video"
+                    android:src="@drawable/ic_video" />
+
+                <TextView
+                    android:id="@+id/txtVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/video"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
+
+                <ImageButton
+                    android:id="@+id/btnAudio"
+                    android:layout_width="55dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/botao_selector"
+                    android:contentDescription="@string/audio"
+                    android:src="@drawable/ic_mic" />
+
+                <TextView
+                    android:id="@+id/txtAudio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/audio"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/edtTituloMemoria"
-        android:layout_width="wrap_content"
-        android:layout_height="101dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="431dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="39dp"
-        android:layout_marginBottom="255dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/bg_edittext"
         android:hint="@string/titulo"
+        android:inputType="textCapSentences"
+        android:minHeight="48dp"
         android:padding="12dp"
         android:textColor="#000"
-        android:textColorHint="#999" />
+        android:textColorHint="#999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardBotoesMidia" />
 
+    <EditText
+        android:id="@+id/edtDescricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_edittext"
+        android:gravity="top|start"
+        android:hint="@string/descricao"
+        android:inputType="textCapSentences|textMultiLine"
+        android:minHeight="96dp"
+        android:padding="12dp"
+        android:textColor="#000"
+        android:textColorHint="#616161"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTituloMemoria" />
 
-    <View
-        android:id="@+id/view10"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/edtTituloMemoria"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="-169dp"
-        android:layout_marginEnd="48dp"
-        android:background="#FFFFFF"
-        android:radius="8dp" />
+    <EditText
+        android:id="@+id/edtVisualizarEm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_edittext"
+        android:clickable="true"
+        android:hint="@string/visualizar"
+        android:minHeight="48dp"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textColorHint="#616161"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDescricao" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="146dp"
-        android:text="@string/visualizar"
-        android:textColor="#616161"
-        android:textSize="14sp" />
-
-    <View
-        android:id="@+id/view9"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_alignTop="@+id/edtTituloMemoria"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="48dp"
-        android:background="#FFFFFF"
-        android:radius="8dp"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="77dp"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="154dp"
-        android:text="@string/descricao"
-        android:textColor="#616161"
-        android:textSize="14sp" />
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="630dp"
-        android:layout_marginEnd="213dp"
-        android:layout_marginBottom="37dp"
-        android:background="#FFFFFF"
-        android:radius="10dp" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginEnd="257dp"
-        android:layout_marginBottom="-13dp"
+    <Button
+        android:id="@+id/btnCancelar"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/cancelamento"
         android:textColor="#000"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSalvar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:layout_width="137dp"
-        android:layout_height="34dp"
-        android:layout_below="@+id/view9"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="245dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="28dp"
-        android:background="#50B2DD"
-        android:radius="8dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="289dp"
-        android:layout_marginEnd="-16dp"
-        android:layout_marginBottom="-12dp"
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#50B2DD"
         android:text="@string/salvamento"
         android:textColor="#FFFF"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:radius="8dp"/>
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
 
-</RelativeLayout>
-
+</androidx.constraintlayout.widget.ConstraintLayout>

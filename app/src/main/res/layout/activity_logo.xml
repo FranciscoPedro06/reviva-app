@@ -8,8 +8,8 @@
     tools:context=".Logo">
 
     <RelativeLayout
-        android:layout_width="450dp"
-        android:layout_height="745dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#50B2DD"
         android:elevation="8dp"
         android:layout_gravity="center"
@@ -18,10 +18,10 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="187dp"
+            android:layout_width="190dp"
             android:layout_height="607dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/ampulhe"
             app:layout_constraintHorizontal_bias="0.653" />
 
@@ -32,7 +32,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="143dp"
-            android:layout_marginTop="301dp"
+            android:layout_marginTop="350dp"
             android:gravity="center_vertical"
             android:text="@string/futuro"
             android:textColor="#FFFFFF"
