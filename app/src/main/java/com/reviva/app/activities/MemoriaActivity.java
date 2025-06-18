@@ -10,13 +10,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.View; // Importar View
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView; // Importar TextView, pois os itens do menu são TextViews
 import android.widget.Toast;
 
+import androidx.annotation.NonNull; // Para o método onRequestPermissionsResult
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat; // Para abrir/fechar o drawer do lado correto
+import androidx.drawerlayout.widget.DrawerLayout; // O componente do DrawerLayout
 
 import com.reviva.app.R;
 import com.reviva.app.models.Memory;
@@ -29,6 +34,7 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
+// MemoriaActivity NÃO implementará mais NavigationView.OnNavigationItemSelectedListener
 public class MemoriaActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1001;
@@ -37,11 +43,22 @@ public class MemoriaActivity extends AppCompatActivity {
     private static final int PICK_VIDEO_REQUEST = 1003;
     private static final int PICK_DOCUMENT_REQUEST = 1234;
 
-
+    // Elementos do Layout Principal
     private ImageButton btnMenu, btnTexto, btnFoto, btnVideo, btnAudio;
     private ImageButton btnRelacionamentos, btnFamilia, btnAmigos, btnViagens, btnMetas, btnMais;
     private Button btnSalvar, btnCancelar;
     private EditText edtTituloMemoria, edtDescricao, edtVisualizarEm;
+
+    // Variáveis do Menu Lateral (Drawer)
+    private DrawerLayout drawerLayout; // Adicionado: Referência ao DrawerLayout
+    // Referências aos itens do menu lateral (os TextViews)
+    private TextView menuItemCriarMemoria;
+    private TextView menuItemMinhasMemorias;
+    private TextView menuItemTopicos;
+    private TextView menuItemConfiguracoes;
+    private TextView menuItemSair;
+
+    // Variáveis de Mídia e Categoria
     private Uri selectedImageUri;
     private Uri selectedAudioUri;
     private MediaRecorder mediaRecorder;
@@ -55,8 +72,9 @@ public class MemoriaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_memoria);
+        setContentView(R.layout.activity_criar_memoria); // Seu layout principal
 
+        // Permissões (mantido do seu código original)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{
@@ -67,7 +85,8 @@ public class MemoriaActivity extends AppCompatActivity {
             }
         }
 
-        btnMenu = findViewById(R.id.btnMenu);
+        // Inicialização dos elementos do Layout Principal
+        btnMenu = findViewById(R.id.btnMenu); // Seu botão de hambúrguer
         btnTexto = findViewById(R.id.btnTexto);
         btnFoto = findViewById(R.id.btnFoto);
         btnVideo = findViewById(R.id.btnVideo);
@@ -84,20 +103,76 @@ public class MemoriaActivity extends AppCompatActivity {
         btnMetas = findViewById(R.id.btnMetas);
         btnMais = findViewById(R.id.btnMais);
 
-        /*btnMenu.setOnClickListener(v ->
-                Toast.makeText(this, "Menu selecionado", Toast.LENGTH_SHORT).show()
-                //FirebaseManager.getInstance().signOut();
-                //finish();
-                );*/
+        // --- INÍCIO: Configuração do Menu Lateral (Drawer) ---
+        drawerLayout = findViewById(R.id.drawer_layout); // Inicializa o DrawerLayout
+
+        // Inicializar os TextViews que são os itens do seu menu lateral
+        menuItemCriarMemoria = findViewById(R.id.menu_item_criar_memoria);
+        menuItemMinhasMemorias = findViewById(R.id.menu_item_minhas_memorias);
+        menuItemTopicos = findViewById(R.id.menu_item_topicos);
+        menuItemConfiguracoes = findViewById(R.id.menu_item_configuracoes);
+        menuItemSair = findViewById(R.id.menu_item_sair);
+
+        // Configurar o clique do btnMenu para abrir/fechar a gaveta
+        btnMenu.setOnClickListener(v -> {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        // Configurar OnClickListeners para cada item do menu (TextViews)
+        menuItemCriarMemoria.setOnClickListener(v -> {
+            Toast.makeText(this, "Criar Memória Clicado", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            // Se for para ir para a própria tela ou uma nova instância
+            // Intent intent = new Intent(MemoriaActivity.this, MemoriaActivity.class);
+            // startActivity(intent);
+        });
+
+        menuItemMinhasMemorias.setOnClickListener(v -> {
+            Toast.makeText(this, "Minhas Memórias Clicado", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, MinhasMemoriasActivity.class);
+            // startActivity(intent);
+        });
+
+        menuItemTopicos.setOnClickListener(v -> {
+            Toast.makeText(this, "Tópicos Clicado", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, TopicosActivity.class);
+            // startActivity(intent);
+        });
+
+        menuItemConfiguracoes.setOnClickListener(v -> {
+            Toast.makeText(this, "Configurações Clicado", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, ConfiguracoesActivity.class);
+            // startActivity(intent);
+        });
+
+        menuItemSair.setOnClickListener(v -> {
+            Toast.makeText(this, "Sair Clicado", Toast.LENGTH_SHORT).show();
+            drawerLayout.closeDrawer(GravityCompat.START);
+            // Exemplo: Fazer logout e ir para a tela de Login
+            // FirebaseManager.getInstance().signOut();
+            // Intent intent = new Intent(MemoriaActivity.this, LoginActivity.class);
+            // startActivity(intent);
+            // finish(); // Finaliza a activity atual
+        });
+        // --- FIM: Configuração do Menu Lateral (Drawer) ---
+
+
+        // O restante dos seus OnClickListeners e métodos (mantidos do seu código original)
 
         btnTexto.setOnClickListener(v -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    intent.setType("*/*");
-                    startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
-                    alternarSelecaoBotao(btnTexto, "texto");
-                });
-
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
+            alternarSelecaoBotao(btnTexto, "texto");
+        });
 
         btnFoto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -107,10 +182,10 @@ public class MemoriaActivity extends AppCompatActivity {
         });
 
         btnVideo.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("video/*");
-                startActivityForResult(intent, PICK_VIDEO_REQUEST);
-                alternarSelecaoBotao(btnVideo, "video");
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("video/*");
+            startActivityForResult(intent, PICK_VIDEO_REQUEST);
+            alternarSelecaoBotao(btnVideo, "video");
         });
 
         btnAudio.setOnClickListener(v -> {
@@ -138,8 +213,6 @@ public class MemoriaActivity extends AppCompatActivity {
             alternarSelecaoBotao(btnMais, "mais");
         });
 
-
-
         btnSalvar.setOnClickListener(v -> salvarMemoria());
 
         btnCancelar.setOnClickListener(v -> {
@@ -157,19 +230,27 @@ public class MemoriaActivity extends AppCompatActivity {
 
             desmarcarTodosBotoes();
         });
-
     }
 
+    // Sobrescrever onBackPressed para lidar com o menu lateral
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START); // Fecha o menu se estiver aberto
+        } else {
+            // Se o menu não estiver aberto, execute o comportamento padrão
+            onBackPressed();
+        }
+    }
+
+    // --- Seus métodos existentes (mantidos como estão) ---
     private void alternarSelecaoBotao(ImageButton botao, String categoria) {
         if (botao.equals(botaoAtualSelecionado)) {
-
             botao.setSelected(false);
             botaoAtualSelecionado = null;
             categoriaSelecionada = null;
         } else {
-
             desmarcarTodosBotoes();
-
             botao.setSelected(true);
             botaoAtualSelecionado = botao;
             categoriaSelecionada = categoria;
@@ -200,7 +281,6 @@ public class MemoriaActivity extends AppCompatActivity {
         }
     }
 
-
     private void showAudioOptions() {
         String[] options = {"Gravar Áudio", "Selecionar Áudio"};
         new AlertDialog.Builder(this)
@@ -221,7 +301,7 @@ public class MemoriaActivity extends AppCompatActivity {
         }
 
         try {
-            audioFilePath = getExternalFilesDir(null).getAbsolutePath() + "audio_" + System.currentTimeMillis() + ".3gp";
+            audioFilePath = getExternalFilesDir(null).getAbsolutePath() + "/audio_" + System.currentTimeMillis() + ".3gp"; // Adicionado "/"
             mediaRecorder = new MediaRecorder();
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -283,24 +363,27 @@ public class MemoriaActivity extends AppCompatActivity {
             }
         }
 
-
+        // Adicionada verificação se o usuário atual não é nulo antes de obter o Uid
+        if (FirebaseManager.getInstance().getAuth().getCurrentUser() == null) {
+            Toast.makeText(this, "Usuário não autenticado. Faça login novamente.", Toast.LENGTH_SHORT).show();
+            // Redirecionar para tela de login ou fazer algo apropriado
+            return;
+        }
         String userId = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
+
+        // Alterada a lógica para exibir Toast apenas se nenhum tipo de mídia for selecionado.
+        // A navegação para ConfirmacaoActivity agora acontece APENAS se o upload for iniciado.
         if (selectedImageUri != null) {
             salvarImagem(titulo, userId);
-            startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedAudioUri != null) {
             salvarAudio(titulo, userId);
-            startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedVideoUri != null) {
             salvarVideo(titulo, userId);
-            startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedDocumentUri != null) {
             salvarDocumento(titulo, userId);
-            startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else {
-            Toast.makeText(this, "Selecione um tipo de momória!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Selecione um tipo de memória!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void salvarDocumento(String titulo, String userId) {
@@ -319,6 +402,8 @@ public class MemoriaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String downloadUrl) {
                 salvarNoFirestore(titulo, userId, downloadUrl, "document");
+                // Navegar para ConfirmacaoActivity SOMENTE APÓS O SUCESSO DO UPLOAD/SAVE
+                startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
             }
 
             @Override
@@ -340,8 +425,6 @@ public class MemoriaActivity extends AppCompatActivity {
         return extension;
     }
 
-
-
     private void salvarImagem(String titulo, String userId) {
         byte[] imageBytes = StorageUtils.convertImageUriToByteArray(this, selectedImageUri);
         if (imageBytes == null) {
@@ -354,6 +437,8 @@ public class MemoriaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String downloadUrl) {
                 salvarNoFirestore(titulo, userId, downloadUrl, "image");
+                // Navegar para ConfirmacaoActivity SOMENTE APÓS O SUCESSO DO UPLOAD/SAVE
+                startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
             }
 
             @Override
@@ -390,6 +475,8 @@ public class MemoriaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String downloadUrl) {
                 salvarNoFirestore(titulo, userId, downloadUrl, "audio");
+                // Navegar para ConfirmacaoActivity SOMENTE APÓS O SUCESSO DO UPLOAD/SAVE
+                startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
             }
 
             @Override
@@ -415,6 +502,8 @@ public class MemoriaActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String downloadUrl) {
                 salvarNoFirestore(titulo, userId, downloadUrl, "video");
+                // Navegar para ConfirmacaoActivity SOMENTE APÓS O SUCESSO DO UPLOAD/SAVE
+                startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
             }
 
             @Override
@@ -427,26 +516,27 @@ public class MemoriaActivity extends AppCompatActivity {
         });
     }
 
-
     private void salvarNoFirestore(String titulo, String userId, String url, String tipo) {
         Memory memory = new Memory();
         memory.setMemoryId(UUID.randomUUID().toString());
         memory.setUserId(userId);
         memory.setTitle(titulo);
-        memory.setDescription("");
+        memory.setDescription(""); // Descrição está vazia, se for usada, deve vir de edtDescricao
         memory.setMediaUrl(url);
         memory.setMediaType(tipo);
         memory.setCreatedAt(System.currentTimeMillis());
         memory.setUnlockAt(System.currentTimeMillis());
-        memory.setUnlocked(true);
-        memory.setCategoria(categoriaSelecionada);
-
+        memory.setUnlocked(true); // Memória é criada desbloqueada
+        memory.setCategoria(categoriaSelecionada); // Categoria selecionada pelos botões
 
         FirebaseManager.getInstance().saveMemory(memory, new FirebaseManager.OnCompleteListener() {
             @Override
             public void onSuccess() {
                 Toast.makeText(MemoriaActivity.this, "Memória salva com sucesso", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
+                // A navegação para ConfirmacaoActivity já é feita em onSuccess do upload,
+                // então remover daqui para evitar navegação duplicada se o Firestore salvar depois do upload.
+                // Mas se você quer que navegue APENAS após salvar no Firestore, pode deixar aqui e remover do upload.
+                // Recomendo deixar aqui, pois é a última etapa.
             }
 
             @Override
@@ -486,7 +576,7 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_RECORD_AUDIO_PERMISSION && grantResults.length > 0 &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -496,8 +586,4 @@ public class MemoriaActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        // Bloqueia botão voltar
-    }
 }

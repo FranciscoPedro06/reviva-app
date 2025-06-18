@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"> <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main_content_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D7F6FF"
@@ -11,8 +17,8 @@
         android:id="@+id/btnMenu"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/elliipse_white"
         android:src="@drawable/ic_menu"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,13 +32,16 @@
         android:textColor="#000"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnMenu" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCategorias"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" android:layout_marginHorizontal="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
@@ -52,29 +61,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:weightSum="3"> <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="4dp">
+                android:weightSum="3">
 
-                <ImageButton
-                android:id="@+id/btnRelacionamentos"
-                android:layout_width="65dp" android:layout_height="62dp"
-                android:background="@drawable/botao_selector"
-                android:contentDescription="@string/relacionamentos"
-                android:src="@drawable/ic_coracao" />
-
-                <TextView
-                    android:id="@+id/txtRelacionamentos"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/relacionamentos"
-                    android:textColor="#000000"
-                    android:textSize="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
                     android:gravity="center_horizontal"
-                    android:maxLines="2" /> </LinearLayout>
+                    android:paddingHorizontal="4dp">
+
+                    <ImageButton
+                        android:id="@+id/btnRelacionamentos"
+                        android:layout_width="65dp"
+                        android:layout_height="62dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/relacionamentos"
+                        android:src="@drawable/ic_coracao" />
+
+                    <TextView
+                        android:id="@+id/txtRelacionamentos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relacionamentos"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -137,32 +151,34 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:weightSum="3"
-                android:layout_marginTop="16dp"> <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:paddingHorizontal="4dp">
+                android:layout_marginTop="16dp">
 
-                <ImageButton
-                    android:id="@+id/btnViagens"
-                    android:layout_width="65dp"
-                    android:layout_height="62dp"
-                    android:background="@drawable/botao_selector"
-                    android:contentDescription="@string/viagens"
-                    android:src="@drawable/ic_aviao" />
-
-                <TextView
-                    android:id="@+id/txtViagens"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/viagens"
-                    android:textColor="#000000"
-                    android:textSize="10sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
                     android:gravity="center_horizontal"
-                    android:maxLines="2" />
-            </LinearLayout>
+                    android:paddingHorizontal="4dp">
+
+                    <ImageButton
+                        android:id="@+id/btnViagens"
+                        android:layout_width="65dp"
+                        android:layout_height="62dp"
+                        android:background="@drawable/botao_selector"
+                        android:contentDescription="@string/viagens"
+                        android:src="@drawable/ic_aviao" />
+
+                    <TextView
+                        android:id="@+id/txtViagens"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/viagens"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -240,31 +256,35 @@
             android:orientation="horizontal"
             android:paddingVertical="12dp"
             android:background="@color/white"
-            android:weightSum="4"> <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingHorizontal="4dp">
+            android:weightSum="4">
 
-            <ImageButton
-                android:id="@+id/btnTexto"
-                android:layout_width="55dp"
-                android:layout_height="45dp"
-                android:background="@drawable/botao_selector"
-                android:contentDescription="@string/texto"
-                android:src="@drawable/ic_text" />
-
-            <TextView
-                android:id="@+id/txtTexto"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/texto"
-                android:textColor="#000000"
-                android:textSize="10sp"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:maxLines="2" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp">
+
+                <ImageButton
+                    android:id="@+id/btnTexto"
+                    android:layout_width="55dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/botao_selector"
+                    android:onClick="abrirCamera"
+                    android:contentDescription="@string/texto"
+                    android:src="@drawable/ic_text" />
+
+                <TextView
+                    android:id="@+id/txtTexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/texto"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:gravity="center_horizontal"
+                    android:maxLines="2" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -333,6 +353,7 @@
                     android:layout_width="55dp"
                     android:layout_height="45dp"
                     android:background="@drawable/botao_selector"
+                    android:onClick="gravarAudio"
                     android:contentDescription="@string/audio"
                     android:src="@drawable/ic_mic" />
 
@@ -440,3 +461,86 @@
         app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_lateral_gaveta"
+        android:layout_width="240dp" android:layout_height="match_parent"
+        android:layout_gravity="start" android:background="@android:color/white" android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"> <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/side_nav_bar"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviva App"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/menu_item_criar_memoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Criar Memória"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:background="?attr/selectableItemBackground" android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/menu_item_minhas_memorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Minhas Memórias"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/menu_item_topicos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Tópicos"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/menu_item_configuracoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Configurações"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/menu_item_sair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Sair"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
