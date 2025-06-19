@@ -150,29 +150,21 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
     private void selecionarBotaoMidia(ImageButton botao, String tipoMidia) {
-        if (botao.equals(botaoMidiaSelecionado)) {
-            botao.setSelected(false);
-            botaoMidiaSelecionado = null;
-            // limpar tipo de mídia, se quiser
-        } else {
-            if (botaoMidiaSelecionado != null) botaoMidiaSelecionado.setSelected(false);
-            botao.setSelected(true);
-            botaoMidiaSelecionado = botao;
-            // armazenar tipo de mídia se necessário
+        if (botaoMidiaSelecionado != null && botaoMidiaSelecionado != botao) {
+            botaoMidiaSelecionado.setSelected(false);
         }
+        botao.setSelected(true);
+        botaoMidiaSelecionado = botao;
     }
 
     private void selecionarBotaoCategoria(ImageButton botao, String categoria) {
-        if (botao.equals(botaoCategoriaSelecionado)) {
-            botao.setSelected(false);
-            botaoCategoriaSelecionado = null;
-            categoriaSelecionada = null;
-        } else {
-            if (botaoCategoriaSelecionado != null) botaoCategoriaSelecionado.setSelected(false);
-            botao.setSelected(true);
-            botaoCategoriaSelecionado = botao;
-            categoriaSelecionada = categoria;
+        if (botaoCategoriaSelecionado != null && botaoCategoriaSelecionado != botao) {
+            botaoCategoriaSelecionado.setSelected(false);
         }
+        botao.setSelected(true);
+        botaoCategoriaSelecionado = botao;
+        categoriaSelecionada = categoria;
+
     }
 
     private void desmarcarTodosBotoes() {
@@ -267,7 +259,10 @@ public class MemoriaActivity extends AppCompatActivity {
         String titulo = edtTituloMemoria.getText().toString().trim();
         String description = edtDescricao.getText().toString().trim();
 
-
+        if (categoriaSelecionada == null) {
+            Toast.makeText(this, "Selecione uma categoria", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (titulo.isEmpty() && edtVisualizarEm.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Preencha o título e o campo de visualização", Toast.LENGTH_SHORT).show();
@@ -295,7 +290,6 @@ public class MemoriaActivity extends AppCompatActivity {
             return;
         }
 
-
         String userId = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
         if (selectedImageUri != null) {
             salvarImagem(titulo, description, userId);
@@ -312,7 +306,6 @@ public class MemoriaActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Selecione um tipo de momória!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void salvarDocumento(String titulo, String description, String userId) {
