@@ -293,6 +293,7 @@ public class MyMemoriesActivity extends AppCompatActivity {
         intent.putExtra("image", memoria.getMediaUrl());
         intent.putExtra("mediaType", memoria.getMediaType());
         intent.putExtra("unlockAt", memoria.getUnlockAt());
+        intent.putExtra("categoria", memoria.getCategoria());
         startActivity(intent);
     }
 

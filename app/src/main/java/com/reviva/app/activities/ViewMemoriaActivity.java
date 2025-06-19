@@ -56,6 +56,42 @@ public class ViewMemoriaActivity extends AppCompatActivity {
         String mediaUrl = intent.getStringExtra("image");
         String mediaType = intent.getStringExtra("mediaType");
 
+        ImageView iconCategoria = findViewById(R.id.btnCategoria);
+        String categoria = intent.getStringExtra("categoria");
+        if (categoria == null) {
+            Toast.makeText(this, "Categoria não recebida", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Categoria: " + categoria, Toast.LENGTH_SHORT).show();
+        }
+
+
+        if (categoria != null) {
+            int iconRes;
+
+            switch (categoria.toLowerCase()) {
+                case "família":
+                    iconRes = R.drawable.ic_familia;
+                    break;
+                case "amigos":
+                    iconRes = R.drawable.ic_amigos;
+                    break;
+                case "viagens":
+                    iconRes = R.drawable.ic_travel;
+                    break;
+                case "metas":
+                    iconRes = R.drawable.ic_metas;
+                    break;
+                case "relacionamentos":
+                    iconRes = R.drawable.ic_coracao;
+                    break;
+                default:
+                    iconRes = R.drawable.ic_mais;
+            }
+            iconCategoria.setImageResource(iconRes);
+        }
+
+
+
         // Data de desbloqueio
         long unlockAt = intent.getLongExtra("unlockAt", 0);
         String dataFormatada = unlockAt > 0
