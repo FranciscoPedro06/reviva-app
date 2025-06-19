@@ -51,6 +51,8 @@ public class MemoriaActivity extends AppCompatActivity {
     private String categoriaSelecionada = null;
     private ImageButton botaoMidiaSelecionado = null;
     private ImageButton botaoCategoriaSelecionado = null;
+    private long unlockTimestamp = 0;
+
 
 
     @Override
@@ -266,6 +268,7 @@ public class MemoriaActivity extends AppCompatActivity {
         String description = edtDescricao.getText().toString().trim();
 
 
+
         if (titulo.isEmpty() && edtVisualizarEm.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Preencha o título e o campo de visualização", Toast.LENGTH_SHORT).show();
             return;
@@ -281,6 +284,15 @@ public class MemoriaActivity extends AppCompatActivity {
                 Toast.makeText(this, "Digite uma data válida no formato dd/MM/yyyy", Toast.LENGTH_SHORT).show();
                 return;
             }
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            unlockTimestamp = sdf.parse(edtVisualizarEm.getText().toString().trim()).getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao converter data", Toast.LENGTH_SHORT).show();
+            return;
         }
 
 
@@ -318,7 +330,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(documentBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, description, userId, downloadUrl, "document");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "document", unlockTimestamp);
             }
 
             @Override
@@ -353,7 +365,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(imageBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, description, userId, downloadUrl, "image");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "image", unlockTimestamp);
             }
 
             @Override
@@ -389,7 +401,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(audioBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, description, userId, downloadUrl, "audio");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "audio", unlockTimestamp);
             }
 
             @Override
@@ -414,7 +426,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(videoBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, description, userId, downloadUrl, "video");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "video", unlockTimestamp);
             }
 
             @Override
@@ -428,7 +440,7 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
 
-    private void salvarNoFirestore(String titulo,String description, String userId, String url, String tipo) {
+    private void salvarNoFirestore(String titulo,String description, String userId, String url, String tipo, long unlockTimestamp) {
         Memory memory = new Memory();
         memory.setMemoryId(UUID.randomUUID().toString());
         memory.setUserId(userId);
@@ -437,7 +449,7 @@ public class MemoriaActivity extends AppCompatActivity {
         memory.setMediaUrl(url);
         memory.setMediaType(tipo);
         memory.setCreatedAt(System.currentTimeMillis());
-        memory.setUnlockAt(System.currentTimeMillis());
+        memory.setUnlockAt(unlockTimestamp);
         memory.setUnlocked(true);
         memory.setCategoria(categoriaSelecionada);
 

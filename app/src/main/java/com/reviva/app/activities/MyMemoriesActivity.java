@@ -2,6 +2,7 @@ package com.reviva.app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -130,10 +131,18 @@ public class MyMemoriesActivity extends AppCompatActivity {
             tvDateAvailable.setText(dataFormatada);
             tvTitle1.setText(m1.getTitle());
             btnDelete1.setEnabled(true);
+            ImageView lockIcon1 = findViewById(R.id.lockIcon1);
+            btnView1.setEnabled(podeAbrirMemoria(m1));
+            btnView1.setAlpha(podeAbrirMemoria(m1) ? 1f : 0.5f);
+            lockIcon1.setVisibility(podeAbrirMemoria(m1) ? View.GONE : View.VISIBLE);
+            // <-- aqui
         } else {
             tvDateAvailable.setText("Indisponível");
             tvTitle1.setText("Sem memória");
             btnDelete1.setEnabled(false);
+            btnDelete1.setAlpha( false ? 1f : 0.5f);
+            btnView1.setEnabled(false); // <-- aqui
+            btnView1.setAlpha( false ? 1f : 0.5f);
         }
 
         if (memories.size() > 1) {
@@ -143,10 +152,18 @@ public class MyMemoriesActivity extends AppCompatActivity {
             tvDateBlocked1.setText(dataFormatada);
             tvTitle2.setText(m2.getTitle());
             btnDelete2.setEnabled(true);
+            ImageView lockIcon2 = findViewById(R.id.lockIcon2);
+            btnView2.setEnabled(podeAbrirMemoria(m2));
+            btnView2.setAlpha(podeAbrirMemoria(m2) ? 1f : 0.5f);
+            lockIcon2.setVisibility(podeAbrirMemoria(m2) ? View.GONE : View.VISIBLE);
+
         } else {
             tvDateBlocked1.setText("Indisponível");
             tvTitle2.setText("Sem memória");
             btnDelete2.setEnabled(false);
+            btnDelete2.setAlpha( false ? 1f : 0.5f);
+            btnView2.setEnabled(false);
+            btnView2.setAlpha( false ? 1f : 0.5f);
         }
 
         if (memories.size() > 2) {
@@ -156,10 +173,19 @@ public class MyMemoriesActivity extends AppCompatActivity {
             tvDateBlocked2.setText(dataFormatada);
             tvTitle3.setText(m3.getTitle());
             btnDelete3.setEnabled(true);
+            ImageView lockIcon3 = findViewById(R.id.lockIcon3);
+            btnView3.setEnabled(podeAbrirMemoria(m3));
+            btnView3.setAlpha(podeAbrirMemoria(m3) ? 1f : 0.5f);
+            lockIcon3.setVisibility(podeAbrirMemoria(m3) ? View.GONE : View.VISIBLE);
+
+
         } else {
             tvDateBlocked2.setText("Indisponível");
             tvTitle3.setText("Sem memória");
             btnDelete3.setEnabled(false);
+            btnDelete3.setAlpha( false ? 1f : 0.5f);
+            btnView3.setEnabled(false);
+            btnView3.setAlpha( false ? 1f : 0.5f);
         }
     }
 
