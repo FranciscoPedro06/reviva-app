@@ -45,6 +45,8 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this, "As senhas não coincidem", Toast.LENGTH_SHORT).show();
                 } else {
                     cadastrarUsuario(nome, email, senha);
+                    Toast.makeText(CadastroActivity.this, "Cadastro completo com sucesso!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
                 }
             }
         });
