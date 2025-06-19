@@ -80,12 +80,13 @@ public class FirebaseManager {
     }
 
     public void saveMemory(Memory memory, OnCompleteListener listener) {
-        db.collection("memories_" + memory.getMediaType())
+        db.collection("memories")
                 .document(memory.getMemoryId())
                 .set(memory)
                 .addOnSuccessListener(aVoid -> listener.onSuccess())
                 .addOnFailureListener(listener::onFailure);
     }
+
 
     public void getMemoriesForUser(String userId, OnGetDataListener listener) {
         db.collection("memories")

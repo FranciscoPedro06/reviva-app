@@ -265,6 +265,8 @@ public class MemoriaActivity extends AppCompatActivity {
 
     private void salvarMemoria() {
         String titulo = edtTituloMemoria.getText().toString().trim();
+        String description = edtDescricao.getText().toString().trim();
+
 
         if (titulo.isEmpty() && edtVisualizarEm.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Preencha o título e o campo de visualização", Toast.LENGTH_SHORT).show();
@@ -286,16 +288,16 @@ public class MemoriaActivity extends AppCompatActivity {
 
         String userId = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
         if (selectedImageUri != null) {
-            salvarImagem(titulo, userId);
+            salvarImagem(titulo, description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedAudioUri != null) {
-            salvarAudio(titulo, userId);
+            salvarAudio(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedVideoUri != null) {
-            salvarVideo(titulo, userId);
+            salvarVideo(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedDocumentUri != null) {
-            salvarDocumento(titulo, userId);
+            salvarDocumento(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else {
             Toast.makeText(this, "Selecione um tipo de momória!", Toast.LENGTH_SHORT).show();
@@ -303,7 +305,7 @@ public class MemoriaActivity extends AppCompatActivity {
 
     }
 
-    private void salvarDocumento(String titulo, String userId) {
+    private void salvarDocumento(String titulo, String description, String userId) {
         byte[] documentBytes = StorageUtils.readFileUriToByteArray(this, selectedDocumentUri);
 
         if (documentBytes == null) {
@@ -318,7 +320,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(documentBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "document");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "document");
             }
 
             @Override
@@ -342,7 +344,7 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
 
-    private void salvarImagem(String titulo, String userId) {
+    private void salvarImagem(String titulo, String description, String userId) {
         byte[] imageBytes = StorageUtils.convertImageUriToByteArray(this, selectedImageUri);
         if (imageBytes == null) {
             Toast.makeText(this, "Erro ao processar imagem", Toast.LENGTH_SHORT).show();
@@ -353,7 +355,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(imageBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "image");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "image");
             }
 
             @Override
@@ -366,7 +368,7 @@ public class MemoriaActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarAudio(String titulo, String userId) {
+    private void salvarAudio(String titulo, String description, String userId) {
         byte[] audioBytes;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && audioFilePath != null) {
             try {
@@ -389,7 +391,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(audioBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "audio");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "audio");
             }
 
             @Override
@@ -402,7 +404,7 @@ public class MemoriaActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarVideo(String titulo, String userId) {
+    private void salvarVideo(String titulo, String description, String userId) {
         byte[] videoBytes = StorageUtils.readFileUriToByteArray(this, selectedVideoUri);
 
         if (videoBytes == null) {
@@ -414,7 +416,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(videoBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "video");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "video");
             }
 
             @Override
@@ -428,12 +430,12 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
 
-    private void salvarNoFirestore(String titulo, String userId, String url, String tipo) {
+    private void salvarNoFirestore(String titulo,String description, String userId, String url, String tipo) {
         Memory memory = new Memory();
         memory.setMemoryId(UUID.randomUUID().toString());
         memory.setUserId(userId);
         memory.setTitle(titulo);
-        memory.setDescription("");
+        memory.setDescription(description);
         memory.setMediaUrl(url);
         memory.setMediaType(tipo);
         memory.setCreatedAt(System.currentTimeMillis());

@@ -2,6 +2,7 @@ package com.reviva.app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,16 +11,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 import com.reviva.app.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import android.content.ContentValues;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
+import com.google.firebase.storage.StorageReference;
+
+import java.io.OutputStream;
 public class ViewMemoriaActivity extends AppCompatActivity {
 
-    private TextView titleMemory, dateMemory, contentMemory, btnDelete;
+    private TextView titleMemory, dateMemory, contentMemory, btnBaixar;
     private ImageView imageMemory;
 
     private static final int REQUEST_DELETE_CONFIRM = 101;
@@ -34,7 +47,7 @@ public class ViewMemoriaActivity extends AppCompatActivity {
         dateMemory = findViewById(R.id.dateMemory);
         contentMemory = findViewById(R.id.contentMemory);
         imageMemory = findViewById(R.id.imageMemory);
-        btnDelete = findViewById(R.id.btnDelete);
+        btnBaixar = findViewById(R.id.btnBaixar);
 
         // Dados recebidos
         Intent intent = getIntent();
@@ -51,6 +64,7 @@ public class ViewMemoriaActivity extends AppCompatActivity {
 
         // Preencher UI
         titleMemory.setText(titulo != null ? titulo : "Sem título");
+        Log.d("ViewMemoria", "Descrição recebida: " + descricao);
         contentMemory.setText(descricao != null ? descricao : "");
         dateMemory.setText(!dataFormatada.isEmpty() ? "Desbloqueio: " + dataFormatada : "");
 
@@ -78,22 +92,47 @@ public class ViewMemoriaActivity extends AppCompatActivity {
         // Botão voltar
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        // Botão deletar com confirmação
-        btnDelete.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(ViewMemoriaActivity.this, DeleteConfirmacaoActivity.class);
-            startActivityForResult(confirmIntent, REQUEST_DELETE_CONFIRM);
+
+        btnBaixar.setOnClickListener(v -> {
+            String mediaPath = getIntent().getStringExtra("image");
+            if (mediaPath == null || mediaPath.isEmpty()) {
+                Toast.makeText(this, "Caminho da mídia não disponível", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(mediaPath);
+            salvarArquivoMediaStore(storageRef, this, storageRef.getName());
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void salvarArquivoMediaStore(StorageReference storageRef, Context context, String nomeArquivo) {
+        storageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(bytes -> {
+            Uri uri;
 
-        if (requestCode == REQUEST_DELETE_CONFIRM && resultCode == RESULT_OK) {
-            Intent result = new Intent();
-            result.putExtra("delete", true);
-            setResult(RESULT_OK, result);
-            finish();
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, nomeArquivo);
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg"); // ou outro tipo, depende da mídia
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+
+                uri = context.getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+            } else {
+                // Android 9 e anteriores, salva manualmente na pasta Downloads pública (requer permissão)
+                Toast.makeText(context, "Use método alternativo para Android < 10", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (uri != null) {
+                try (OutputStream out = context.getContentResolver().openOutputStream(uri)) {
+                    out.write(bytes);
+                    Toast.makeText(context, "Download salvo em Downloads", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(context, "Erro ao salvar arquivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(context, "Erro no download: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
     }
 }

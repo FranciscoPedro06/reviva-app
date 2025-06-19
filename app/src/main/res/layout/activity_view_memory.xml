@@ -94,13 +94,13 @@
 
         <!-- Botão Apagar (TextView estilizado) -->
         <TextView
-            android:id="@+id/btnDelete"
+            android:id="@+id/btnBaixar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_gray_8dp"
             android:gravity="center"
-            android:text="Apagar"
+            android:text="Baixar"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
