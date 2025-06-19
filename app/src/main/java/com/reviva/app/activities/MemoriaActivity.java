@@ -49,7 +49,10 @@ public class MemoriaActivity extends AppCompatActivity {
     private Uri selectedVideoUri;
     private Uri selectedDocumentUri;
     private String categoriaSelecionada = null;
-    private ImageButton botaoAtualSelecionado = null;
+    private ImageButton botaoMidiaSelecionado = null;
+    private ImageButton botaoCategoriaSelecionado = null;
+    private long unlockTimestamp = 0;
+
 
 
     @Override
@@ -91,52 +94,39 @@ public class MemoriaActivity extends AppCompatActivity {
                 );*/
 
         btnTexto.setOnClickListener(v -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    intent.setType("*/*");
-                    startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
-                    alternarSelecaoBotao(btnTexto, "texto");
-                });
-
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
+            selecionarBotaoMidia(btnTexto, "texto");
+        });
 
         btnFoto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
-            alternarSelecaoBotao(btnFoto, "imagem");
+            selecionarBotaoMidia(btnFoto, "imagem");
         });
 
         btnVideo.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("video/*");
-                startActivityForResult(intent, PICK_VIDEO_REQUEST);
-                alternarSelecaoBotao(btnVideo, "video");
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("video/*");
+            startActivityForResult(intent, PICK_VIDEO_REQUEST);
+            selecionarBotaoMidia(btnVideo, "video");
         });
 
         btnAudio.setOnClickListener(v -> {
             showAudioOptions();
-            alternarSelecaoBotao(btnAudio, "audio");
         });
 
-        btnRelacionamentos.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnRelacionamentos, "relacionamentos");
-        });
+// Categorias:
+        btnRelacionamentos.setOnClickListener(v -> selecionarBotaoCategoria(btnRelacionamentos, "relacionamentos"));
+        btnFamilia.setOnClickListener(v -> selecionarBotaoCategoria(btnFamilia, "família"));
+        btnAmigos.setOnClickListener(v -> selecionarBotaoCategoria(btnAmigos, "amigos"));
+        btnViagens.setOnClickListener(v -> selecionarBotaoCategoria(btnViagens, "viagens"));
+        btnMetas.setOnClickListener(v -> selecionarBotaoCategoria(btnMetas, "metas"));
+        btnMais.setOnClickListener(v -> selecionarBotaoCategoria(btnMais, "mais"));
 
-        btnFamilia.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnFamilia, "família");
-        });
-        btnAmigos.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnAmigos, "amigos");
-        });
-        btnViagens.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnViagens, "viagens");
-        });
-        btnMetas.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnMetas, "metas");
-        });
-        btnMais.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnMais, "mais");
-        });
 
 
 
@@ -152,7 +142,6 @@ public class MemoriaActivity extends AppCompatActivity {
             selectedImageUri = null;
             selectedAudioUri = null;
             selectedVideoUri = null;
-            botaoAtualSelecionado = null;
             categoriaSelecionada = null;
 
             desmarcarTodosBotoes();
@@ -160,20 +149,22 @@ public class MemoriaActivity extends AppCompatActivity {
 
     }
 
-    private void alternarSelecaoBotao(ImageButton botao, String categoria) {
-        if (botao.equals(botaoAtualSelecionado)) {
-
-            botao.setSelected(false);
-            botaoAtualSelecionado = null;
-            categoriaSelecionada = null;
-        } else {
-
-            desmarcarTodosBotoes();
-
-            botao.setSelected(true);
-            botaoAtualSelecionado = botao;
-            categoriaSelecionada = categoria;
+    private void selecionarBotaoMidia(ImageButton botao, String tipoMidia) {
+        if (botaoMidiaSelecionado != null && botaoMidiaSelecionado != botao) {
+            botaoMidiaSelecionado.setSelected(false);
         }
+        botao.setSelected(true);
+        botaoMidiaSelecionado = botao;
+    }
+
+    private void selecionarBotaoCategoria(ImageButton botao, String categoria) {
+        if (botaoCategoriaSelecionado != null && botaoCategoriaSelecionado != botao) {
+            botaoCategoriaSelecionado.setSelected(false);
+        }
+        botao.setSelected(true);
+        botaoCategoriaSelecionado = botao;
+        categoriaSelecionada = categoria;
+
     }
 
     private void desmarcarTodosBotoes() {
@@ -215,6 +206,7 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
     private void startRecordingAudio() {
+        selecionarBotaoMidia(btnAudio, "audio");
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
             return;
@@ -265,6 +257,12 @@ public class MemoriaActivity extends AppCompatActivity {
 
     private void salvarMemoria() {
         String titulo = edtTituloMemoria.getText().toString().trim();
+        String description = edtDescricao.getText().toString().trim();
+
+        if (categoriaSelecionada == null) {
+            Toast.makeText(this, "Selecione uma categoria", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (titulo.isEmpty() && edtVisualizarEm.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Preencha o título e o campo de visualização", Toast.LENGTH_SHORT).show();
@@ -283,27 +281,34 @@ public class MemoriaActivity extends AppCompatActivity {
             }
         }
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            unlockTimestamp = sdf.parse(edtVisualizarEm.getText().toString().trim()).getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao converter data", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String userId = FirebaseManager.getInstance().getAuth().getCurrentUser().getUid();
         if (selectedImageUri != null) {
-            salvarImagem(titulo, userId);
+            salvarImagem(titulo, description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedAudioUri != null) {
-            salvarAudio(titulo, userId);
+            salvarAudio(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedVideoUri != null) {
-            salvarVideo(titulo, userId);
+            salvarVideo(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else if (selectedDocumentUri != null) {
-            salvarDocumento(titulo, userId);
+            salvarDocumento(titulo,description, userId);
             startActivity(new Intent(MemoriaActivity.this, ConfirmacaoActivity.class));
         } else {
             Toast.makeText(this, "Selecione um tipo de momória!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
-    private void salvarDocumento(String titulo, String userId) {
+    private void salvarDocumento(String titulo, String description, String userId) {
         byte[] documentBytes = StorageUtils.readFileUriToByteArray(this, selectedDocumentUri);
 
         if (documentBytes == null) {
@@ -318,7 +323,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(documentBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "document");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "document", unlockTimestamp);
             }
 
             @Override
@@ -342,7 +347,7 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
 
-    private void salvarImagem(String titulo, String userId) {
+    private void salvarImagem(String titulo, String description, String userId) {
         byte[] imageBytes = StorageUtils.convertImageUriToByteArray(this, selectedImageUri);
         if (imageBytes == null) {
             Toast.makeText(this, "Erro ao processar imagem", Toast.LENGTH_SHORT).show();
@@ -353,7 +358,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(imageBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "image");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "image", unlockTimestamp);
             }
 
             @Override
@@ -366,7 +371,7 @@ public class MemoriaActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarAudio(String titulo, String userId) {
+    private void salvarAudio(String titulo, String description, String userId) {
         byte[] audioBytes;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && audioFilePath != null) {
             try {
@@ -389,7 +394,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(audioBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "audio");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "audio", unlockTimestamp);
             }
 
             @Override
@@ -402,7 +407,7 @@ public class MemoriaActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarVideo(String titulo, String userId) {
+    private void salvarVideo(String titulo, String description, String userId) {
         byte[] videoBytes = StorageUtils.readFileUriToByteArray(this, selectedVideoUri);
 
         if (videoBytes == null) {
@@ -414,7 +419,7 @@ public class MemoriaActivity extends AppCompatActivity {
         FirebaseManager.getInstance().uploadFile(videoBytes, fileName, new FirebaseManager.OnUploadCompleteListener() {
             @Override
             public void onSuccess(String downloadUrl) {
-                salvarNoFirestore(titulo, userId, downloadUrl, "video");
+                salvarNoFirestore(titulo, description, userId, downloadUrl, "video", unlockTimestamp);
             }
 
             @Override
@@ -428,16 +433,16 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
 
-    private void salvarNoFirestore(String titulo, String userId, String url, String tipo) {
+    private void salvarNoFirestore(String titulo,String description, String userId, String url, String tipo, long unlockTimestamp) {
         Memory memory = new Memory();
         memory.setMemoryId(UUID.randomUUID().toString());
         memory.setUserId(userId);
         memory.setTitle(titulo);
-        memory.setDescription("");
+        memory.setDescription(description);
         memory.setMediaUrl(url);
         memory.setMediaType(tipo);
         memory.setCreatedAt(System.currentTimeMillis());
-        memory.setUnlockAt(System.currentTimeMillis());
+        memory.setUnlockAt(unlockTimestamp);
         memory.setUnlocked(true);
         memory.setCategoria(categoriaSelecionada);
 
@@ -460,7 +465,13 @@ public class MemoriaActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode != RESULT_OK || data == null) return;
+        if (resultCode != RESULT_OK || data == null || data.getData() == null) {
+            if (botaoMidiaSelecionado != null) {
+                botaoMidiaSelecionado.setSelected(false);
+                botaoMidiaSelecionado = null;
+            }
+            return;
+        }
 
         Uri uri = data.getData();
 
@@ -472,6 +483,7 @@ public class MemoriaActivity extends AppCompatActivity {
             case PICK_AUDIO_REQUEST:
                 selectedAudioUri = uri;
                 Toast.makeText(this, "Áudio selecionado", Toast.LENGTH_SHORT).show();
+                selecionarBotaoMidia(btnAudio, "audio");
                 break;
             case PICK_IMAGE_REQUEST:
                 selectedImageUri = uri;

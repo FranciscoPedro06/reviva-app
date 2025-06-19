@@ -100,6 +100,16 @@
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
 
+        <ImageView
+            android:id="@+id/lockIcon1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_lock"
+            android:visibility="gone"/>
+
     </RelativeLayout>
 
     <!-- Caixa 2 -->
@@ -146,7 +156,7 @@
             android:layout_height="46dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/rounded_lightblue_8dp"
+            android:background="@drawable/rounded_blue_8dp"
             android:gravity="center"
             android:text="Ver"
             android:textColor="#FFFFFF"
@@ -176,7 +186,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_lock" />
+            android:src="@drawable/ic_lock"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -224,7 +235,7 @@
             android:layout_height="46dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/rounded_lightblue_8dp"
+            android:background="@drawable/rounded_blue_8dp"
             android:gravity="center"
             android:text="Ver"
             android:textColor="#FFFFFF"
@@ -254,7 +265,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_lock" />
+            android:src="@drawable/ic_lock"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

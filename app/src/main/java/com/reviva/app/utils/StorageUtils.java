@@ -102,3 +102,4 @@ public class StorageUtils {
 
 // Adicionar:
 // Métodos para salvar arquivos de mídia no armazenamento interno/externo do dispositivo.
+
