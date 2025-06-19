@@ -21,12 +21,12 @@ public class InicialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_telainicio);
 
-        /*FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(this, MemoriaActivity.class));
             finish();
             return;
-        }*/
+        }
 
 
         btnComecar = findViewById(R.id.btnComecar);
