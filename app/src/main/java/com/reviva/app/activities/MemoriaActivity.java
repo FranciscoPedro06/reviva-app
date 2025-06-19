@@ -123,28 +123,25 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
         menuItemMinhasMemorias.setOnClickListener(v -> {
-            Toast.makeText(this, "Minhas Memórias Clicado", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawer(GravityCompat.START);
-            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, MinhasMemoriasActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(MemoriaActivity.this, MyMemoriesActivity.class);
+            startActivity(intent);
         });
 
 
         menuItemConfiguracoes.setOnClickListener(v -> {
-            Toast.makeText(this, "Configurações Clicado", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawer(GravityCompat.START);
             // Exemplo: Intent intent = new Intent(MemoriaActivity.this, ConfiguracoesActivity.class);
             // startActivity(intent);
         });
 
         menuItemSair.setOnClickListener(v -> {
-            Toast.makeText(this, "Sair Clicado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Saindo...", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawer(GravityCompat.START);
-            // Exemplo: Fazer logout e ir para a tela de Login
-            // FirebaseManager.getInstance().signOut();
-            // Intent intent = new Intent(MemoriaActivity.this, LoginActivity.class);
-            // startActivity(intent);
-            // finish(); // Finaliza a activity atual
+            FirebaseManager.getInstance().signOut();
+            Intent intent = new Intent(MemoriaActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         btnTexto.setOnClickListener(v -> {
@@ -152,7 +149,7 @@ public class MemoriaActivity extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
             startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
-            alternarSelecaoBotao(btnTexto, "texto");
+            selecionarBotaoMidia(btnTexto, "texto");
         });
 
         btnFoto.setOnClickListener(v -> {
