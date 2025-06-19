@@ -66,20 +66,39 @@
             android:layout_height="198dp"
             android:layout_marginBottom="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/aniversario_35"
             android:background="@drawable/rounded_corners_12dp"/>
 
-        <!-- Data -->
-        <TextView
-            android:id="@+id/dateMemory"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layoutDataCategoria"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="15 Jun 2025"
-            android:textColor="#616161"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_gravity="start"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/dateMemory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Desbloqueio: 15/06/2025"
+                android:textColor="#616161"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:fontFamily="@font/poppins_semibold" />
+
+            <ImageView
+                android:id="@+id/btnCategoria"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_coracao"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+
 
         <!-- Texto da memória -->
         <TextView
@@ -95,13 +114,13 @@
 
         <!-- Botão Apagar (TextView estilizado) -->
         <TextView
-            android:id="@+id/btnDelete"
+            android:id="@+id/btnBaixar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_gray_8dp"
             android:gravity="center"
-            android:text="Apagar"
+            android:text="Baixar"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
