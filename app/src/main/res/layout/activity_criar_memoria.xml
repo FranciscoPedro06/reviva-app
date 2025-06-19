@@ -83,11 +83,11 @@
                         android:id="@+id/txtRelacionamentos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/relacionamentos"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -465,9 +465,11 @@
     <LinearLayout
         android:id="@+id/menu_lateral_gaveta"
         android:layout_width="240dp" android:layout_height="match_parent"
-        android:layout_gravity="start" android:background="@android:color/white" android:orientation="vertical"
+        android:layout_gravity="start" android:background="#84D7F0FF" android:orientation="vertical"
         android:clickable="true"
-        android:focusable="true"> <LinearLayout
+        android:focusable="true">
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/side_nav_bar"
@@ -478,20 +480,10 @@
             android:layout_height="wrap_content"
             android:text="Reviva App"
             android:textColor="@android:color/white"
+            android:layout_marginLeft="50dp"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-        <TextView
-            android:id="@+id/menu_item_criar_memoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Criar Memória"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:background="?attr/selectableItemBackground" android:clickable="true"
-            android:focusable="true" />
 
         <TextView
             android:id="@+id/menu_item_minhas_memorias"
@@ -499,21 +491,14 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="Minhas Memórias"
-            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#5088DD"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/menu_item_background"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:textSize="16sp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true" />
-
-        <TextView
-            android:id="@+id/menu_item_topicos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Tópicos"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true" />
 
@@ -523,9 +508,14 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="Configurações"
-            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor=" #5088DD"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/menu_item_background"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:textSize="16sp"
-            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true" />
 
@@ -534,10 +524,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:textStyle="bold"
             android:text="Sair"
             android:textColor="@android:color/black"
+            android:layout_marginTop="300dp"
             android:textSize="16sp"
-            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true" />
 

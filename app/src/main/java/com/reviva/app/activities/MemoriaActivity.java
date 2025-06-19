@@ -52,9 +52,7 @@ public class MemoriaActivity extends AppCompatActivity {
     // Variáveis do Menu Lateral (Drawer)
     private DrawerLayout drawerLayout; // Adicionado: Referência ao DrawerLayout
     // Referências aos itens do menu lateral (os TextViews)
-    private TextView menuItemCriarMemoria;
     private TextView menuItemMinhasMemorias;
-    private TextView menuItemTopicos;
     private TextView menuItemConfiguracoes;
     private TextView menuItemSair;
 
@@ -107,9 +105,7 @@ public class MemoriaActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout); // Inicializa o DrawerLayout
 
         // Inicializar os TextViews que são os itens do seu menu lateral
-        menuItemCriarMemoria = findViewById(R.id.menu_item_criar_memoria);
         menuItemMinhasMemorias = findViewById(R.id.menu_item_minhas_memorias);
-        menuItemTopicos = findViewById(R.id.menu_item_topicos);
         menuItemConfiguracoes = findViewById(R.id.menu_item_configuracoes);
         menuItemSair = findViewById(R.id.menu_item_sair);
 
@@ -122,14 +118,6 @@ public class MemoriaActivity extends AppCompatActivity {
             }
         });
 
-        // Configurar OnClickListeners para cada item do menu (TextViews)
-        menuItemCriarMemoria.setOnClickListener(v -> {
-            Toast.makeText(this, "Criar Memória Clicado", Toast.LENGTH_SHORT).show();
-            drawerLayout.closeDrawer(GravityCompat.START);
-            // Se for para ir para a própria tela ou uma nova instância
-            // Intent intent = new Intent(MemoriaActivity.this, MemoriaActivity.class);
-            // startActivity(intent);
-        });
 
         menuItemMinhasMemorias.setOnClickListener(v -> {
             Toast.makeText(this, "Minhas Memórias Clicado", Toast.LENGTH_SHORT).show();
@@ -138,12 +126,6 @@ public class MemoriaActivity extends AppCompatActivity {
             // startActivity(intent);
         });
 
-        menuItemTopicos.setOnClickListener(v -> {
-            Toast.makeText(this, "Tópicos Clicado", Toast.LENGTH_SHORT).show();
-            drawerLayout.closeDrawer(GravityCompat.START);
-            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, TopicosActivity.class);
-            // startActivity(intent);
-        });
 
         menuItemConfiguracoes.setOnClickListener(v -> {
             Toast.makeText(this, "Configurações Clicado", Toast.LENGTH_SHORT).show();
