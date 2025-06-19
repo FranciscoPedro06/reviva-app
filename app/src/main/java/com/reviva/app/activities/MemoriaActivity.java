@@ -49,7 +49,8 @@ public class MemoriaActivity extends AppCompatActivity {
     private Uri selectedVideoUri;
     private Uri selectedDocumentUri;
     private String categoriaSelecionada = null;
-    private ImageButton botaoAtualSelecionado = null;
+    private ImageButton botaoMidiaSelecionado = null;
+    private ImageButton botaoCategoriaSelecionado = null;
 
 
     @Override
@@ -91,52 +92,39 @@ public class MemoriaActivity extends AppCompatActivity {
                 );*/
 
         btnTexto.setOnClickListener(v -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    intent.setType("*/*");
-                    startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
-                    alternarSelecaoBotao(btnTexto, "texto");
-                });
-
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("*/*");
+            startActivityForResult(intent, PICK_DOCUMENT_REQUEST);
+            selecionarBotaoMidia(btnTexto, "texto");
+        });
 
         btnFoto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
-            alternarSelecaoBotao(btnFoto, "imagem");
+            selecionarBotaoMidia(btnFoto, "imagem");
         });
 
         btnVideo.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("video/*");
-                startActivityForResult(intent, PICK_VIDEO_REQUEST);
-                alternarSelecaoBotao(btnVideo, "video");
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("video/*");
+            startActivityForResult(intent, PICK_VIDEO_REQUEST);
+            selecionarBotaoMidia(btnVideo, "video");
         });
 
         btnAudio.setOnClickListener(v -> {
             showAudioOptions();
-            alternarSelecaoBotao(btnAudio, "audio");
         });
 
-        btnRelacionamentos.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnRelacionamentos, "relacionamentos");
-        });
+// Categorias:
+        btnRelacionamentos.setOnClickListener(v -> selecionarBotaoCategoria(btnRelacionamentos, "relacionamentos"));
+        btnFamilia.setOnClickListener(v -> selecionarBotaoCategoria(btnFamilia, "família"));
+        btnAmigos.setOnClickListener(v -> selecionarBotaoCategoria(btnAmigos, "amigos"));
+        btnViagens.setOnClickListener(v -> selecionarBotaoCategoria(btnViagens, "viagens"));
+        btnMetas.setOnClickListener(v -> selecionarBotaoCategoria(btnMetas, "metas"));
+        btnMais.setOnClickListener(v -> selecionarBotaoCategoria(btnMais, "mais"));
 
-        btnFamilia.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnFamilia, "família");
-        });
-        btnAmigos.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnAmigos, "amigos");
-        });
-        btnViagens.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnViagens, "viagens");
-        });
-        btnMetas.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnMetas, "metas");
-        });
-        btnMais.setOnClickListener(v -> {
-            alternarSelecaoBotao(btnMais, "mais");
-        });
 
 
 
@@ -152,7 +140,6 @@ public class MemoriaActivity extends AppCompatActivity {
             selectedImageUri = null;
             selectedAudioUri = null;
             selectedVideoUri = null;
-            botaoAtualSelecionado = null;
             categoriaSelecionada = null;
 
             desmarcarTodosBotoes();
@@ -160,18 +147,28 @@ public class MemoriaActivity extends AppCompatActivity {
 
     }
 
-    private void alternarSelecaoBotao(ImageButton botao, String categoria) {
-        if (botao.equals(botaoAtualSelecionado)) {
-
+    private void selecionarBotaoMidia(ImageButton botao, String tipoMidia) {
+        if (botao.equals(botaoMidiaSelecionado)) {
             botao.setSelected(false);
-            botaoAtualSelecionado = null;
+            botaoMidiaSelecionado = null;
+            // limpar tipo de mídia, se quiser
+        } else {
+            if (botaoMidiaSelecionado != null) botaoMidiaSelecionado.setSelected(false);
+            botao.setSelected(true);
+            botaoMidiaSelecionado = botao;
+            // armazenar tipo de mídia se necessário
+        }
+    }
+
+    private void selecionarBotaoCategoria(ImageButton botao, String categoria) {
+        if (botao.equals(botaoCategoriaSelecionado)) {
+            botao.setSelected(false);
+            botaoCategoriaSelecionado = null;
             categoriaSelecionada = null;
         } else {
-
-            desmarcarTodosBotoes();
-
+            if (botaoCategoriaSelecionado != null) botaoCategoriaSelecionado.setSelected(false);
             botao.setSelected(true);
-            botaoAtualSelecionado = botao;
+            botaoCategoriaSelecionado = botao;
             categoriaSelecionada = categoria;
         }
     }
@@ -215,6 +212,7 @@ public class MemoriaActivity extends AppCompatActivity {
     }
 
     private void startRecordingAudio() {
+        selecionarBotaoMidia(btnAudio, "audio");
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO_PERMISSION);
             return;
@@ -462,7 +460,13 @@ public class MemoriaActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode != RESULT_OK || data == null) return;
+        if (resultCode != RESULT_OK || data == null || data.getData() == null) {
+            if (botaoMidiaSelecionado != null) {
+                botaoMidiaSelecionado.setSelected(false);
+                botaoMidiaSelecionado = null;
+            }
+            return;
+        }
 
         Uri uri = data.getData();
 
@@ -474,6 +478,7 @@ public class MemoriaActivity extends AppCompatActivity {
             case PICK_AUDIO_REQUEST:
                 selectedAudioUri = uri;
                 Toast.makeText(this, "Áudio selecionado", Toast.LENGTH_SHORT).show();
+                selecionarBotaoMidia(btnAudio, "audio");
                 break;
             case PICK_IMAGE_REQUEST:
                 selectedImageUri = uri;
