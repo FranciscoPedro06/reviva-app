@@ -238,6 +238,7 @@ public class MyMemoriesActivity extends AppCompatActivity {
     private void abrirConfirmacaoDeletar() {
         Intent intent = new Intent(this, DeleteConfirmacaoActivity.class);
         startActivityForResult(intent, REQUEST_CODE_DELETE_CONFIRM);
+
     }
 
     @Override
@@ -245,6 +246,7 @@ public class MyMemoriesActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_DELETE_CONFIRM) {
             if (resultCode == RESULT_OK) {
+                startActivity(new Intent(this, DeleteActivity.class));
                 // Usuário confirmou
                 if (memoriaParaDeletar != null) {
                     excluirMemoria(memoriaParaDeletar);
