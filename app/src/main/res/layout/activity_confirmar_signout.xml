@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"  tools:context=".activities.ConfirmarSignoutActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="320dp" android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp" android:paddingTop="32dp"      android:paddingBottom="24dp"   android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tvConfirmTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tem certeza que deseja sair ?"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="32dp" /> <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/iconContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="40dp"> <View
+            android:id="@+id/ellipseWhite"
+            android:layout_width="100dp" android:layout_height="100dp"
+            android:background="@drawable/ellipse_white_rounded"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgExclamation"
+                android:layout_width="50dp" android:layout_height="50dp"
+                android:src="@drawable/fa_solid_exclamation"
+                android:contentDescription="Ícone de exclamação"
+                app:layout_constraintTop_toTopOf="@id/ellipseWhite"
+                app:layout_constraintBottom_toBottomOf="@id/ellipseWhite"
+                app:layout_constraintStart_toStartOf="@id/ellipseWhite"
+                app:layout_constraintEnd_toEndOf="@id/ellipseWhite" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"> <Button
+                android:id="@+id/btnYes"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="Sim"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:backgroundTint="#50B2DD"
+                app:cornerRadius="8dp"
+                android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnNo"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Não"
+                    android:textColor="#50B2DD"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_bold"
+                    app:strokeColor="#50B2DD"
+                    app:cornerRadius="8dp"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
