@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,20 +23,26 @@
         android:theme="@style/Theme.Reviva"
         tools:targetApi="31">
 
-        <activity android:name=".activities.DeleteConfirmadaActivity"  android:exported="true"/>
-        <activity android:name=".activities.DeleteActivity"  android:exported="true"/>
-        <activity android:name=".activities.DeleteConfirmacaoActivity" android:exported="true"/>
-        <activity android:name=".activities.ViewMemoriaActivity" android:exported="true"/>
-        <activity android:name=".activities.MyMemoriesActivity" android:exported="true"/>
-        <activity android:name=".activities.ConfirmacaoActivity" android:exported="true"/>
-        <activity android:name=".activities.MemoriaActivity" android:exported="true"/>
-        <activity android:name=".activities.CadastroActivity" android:exported="true" />
-        <activity android:name=".activities.LoginActivity" android:exported="true"/>
-        <activity android:name=".activities.InicialActivity" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".activities.InicialActivity"
+            android:exported="true"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
-    </application>
+
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.CadastroActivity" />
+
+        <activity android:name=".activities.MemoriaActivity" />
+        <activity android:name=".activities.ConfirmacaoActivity" />
+        <activity android:name=".activities.MyMemoriesActivity" />
+        <activity android:name=".activities.ViewMemoriaActivity" />
+
+        <activity android:name=".activities.DeleteActivity" />
+        <activity android:name=".activities.DeleteConfirmacaoActivity" />
+        <activity android:name=".activities.DeleteConfirmadaActivity" />
+
+        <activity android:name=".activities.ConfirmarSignoutActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" /> </application>
 </manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#50B2DD"
+    tools:context=".activities.ConfirmarSignoutActivity"> <TextView
+    android:id="@+id/tvConfirmTitle"
+    android:layout_width="0dp" android:layout_height="wrap_content"
+    android:layout_marginTop="100dp" android:paddingHorizontal="24dp" android:text="Tem certeza que deseja sair ?" android:textColor="#FFFFFF"
+    android:textSize="25sp"
+    android:fontFamily="@font/poppins_regular"
+    android:textAlignment="center"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvConfirmTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnNo"
+        app:layout_constraintVertical_bias="0.5"> <View
+        android:id="@+id/ellipseWhite"
+        android:layout_width="213dp"
+        android:layout_height="213dp"
+        android:background="@drawable/ellipse_white_rounded"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgExclamation"
+            android:layout_width="71dp"
+            android:layout_height="189dp"
+            android:src="@drawable/fa_solid_exclamation"
+            app:layout_constraintTop_toTopOf="@id/ellipseWhite"
+            app:layout_constraintBottom_toBottomOf="@id/ellipseWhite"
+            app:layout_constraintStart_toStartOf="@id/ellipseWhite"
+            app:layout_constraintEnd_toEndOf="@id/ellipseWhite" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnYes" android:layout_width="0dp" android:layout_height="56dp" android:text="sim"
+        android:textColor="#50B2DD"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintWidth_percent="0.4" app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintHorizontal_chainStyle="packed" android:layout_marginBottom="48dp" android:layout_marginEnd="16dp" /> <Button
+        android:id="@+id/btnNo" android:layout_width="0dp" android:layout_height="56dp" android:text="não"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="#616161"
+        app:layout_constraintWidth_percent="0.4" app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnYes"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="48dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
