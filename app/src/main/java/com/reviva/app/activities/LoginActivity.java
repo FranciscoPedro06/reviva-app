@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText senhaEditText;
     private Button btnEntrar;
+    private TextView esqueciSenha;
     private TextView cadastrarText;
     private FirebaseAuth mAuth;
     private ImageView google;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.email);
         senhaEditText = findViewById(R.id.senha);
         btnEntrar = findViewById(R.id.btnEntrar);
+        esqueciSenha = findViewById(R.id.esqueciSenha);
         cadastrarText = findViewById(R.id.cadastrar);
         google = findViewById(R.id.google);
 
@@ -75,6 +77,29 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login com Google", Toast.LENGTH_SHORT).show();
             }
         });
+
+        esqueciSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText edtEmail = findViewById(R.id.email); // ou o ID correto do campo de e-mail
+                String email = edtEmail.getText().toString().trim();
+
+                if (email.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Digite seu e-mail", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Email de redefinição enviado", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Erro ao enviar email", Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        });
+
 
         // Ação do texto "Cadastrar"
         cadastrarText.setOnClickListener(new View.OnClickListener() {
