@@ -108,7 +108,7 @@
 
                     <EditText
                         android:id="@+id/email"
-                        android:layout_width="0dp"
+                        android:layout_width="254dp"
                         android:layout_height="48dp"
                         android:layout_weight="1"
                         android:background="@drawable/rounded_edittext"
@@ -153,6 +153,14 @@
                         android:textColor="#000000"
                         android:textColorHint="#616161"
                         android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/btnOlho"
+                        android:layout_width="20dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/olho_fechado"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <!-- Esqueci minha senha -->

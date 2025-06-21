@@ -3,6 +3,7 @@ package com.reviva.app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextView cadastrarText;
     private FirebaseAuth mAuth;
     private ImageView google;
+    private ImageView btnOlho;
+    private boolean senhaVisivel = false;
+
+
 
 
     @Override
@@ -41,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         esqueciSenha = findViewById(R.id.esqueciSenha);
         cadastrarText = findViewById(R.id.cadastrar);
         google = findViewById(R.id.google);
+        btnOlho = findViewById(R.id.btnOlho);
 
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +103,25 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Erro ao enviar email", Toast.LENGTH_LONG).show();
                             }
                         });
+            }
+        });
+
+        btnOlho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (senhaVisivel) {
+                    // Ocultar senha
+                    senhaEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    btnOlho.setImageResource(R.drawable.olho_fechado);
+                } else {
+                    // Mostrar senha
+                    senhaEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    btnOlho.setImageResource(R.drawable.olho);
+                }
+                senhaVisivel = !senhaVisivel;
+
+                // Move o cursor para o fim do texto
+                senhaEditText.setSelection(senhaEditText.getText().length());
             }
         });
 
