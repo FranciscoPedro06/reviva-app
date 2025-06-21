@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#50B2DD">
+    android:background="#50B2DD"
+    tools:context=".activities.DeleteActivity"> <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Texto carregando -->
     <TextView
         android:id="@+id/tvDeleting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Excluindo memória..."
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/poppins_regular"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="Excluindo memória..." android:textColor="#FFFFFF"
+        android:textSize="20sp" android:fontFamily="@font/poppins_regular" />
 
-    <!-- Ícone de lixeira animado -->
     <ImageView
         android:id="@+id/imgTrashLoading"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ampulhe"
-        app:layout_constraintTop_toBottomOf="@id/tvDeleting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="20dp" android:src="@drawable/ampulhe"
+        android:contentDescription="Ícone de carregamento" /> </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
