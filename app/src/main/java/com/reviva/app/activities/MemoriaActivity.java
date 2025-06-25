@@ -106,7 +106,6 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
         menuItemMinhasMemorias = findViewById(R.id.menu_item_minhas_memorias);
-        menuItemConfiguracoes = findViewById(R.id.menu_item_configuracoes);
         menuItemSair = findViewById(R.id.menu_item_sair);
 
 

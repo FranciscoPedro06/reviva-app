@@ -50,25 +50,25 @@
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="355dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@color/white">
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -94,8 +94,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -110,19 +110,19 @@
                         android:id="@+id/txtFamilia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/familia"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -137,28 +137,28 @@
                         android:id="@+id/txtAmigos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/amigos"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:weightSum="3"
-                android:layout_marginTop="16dp">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -173,19 +173,19 @@
                         android:id="@+id/txtViagens"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/viagens"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -200,19 +200,19 @@
                         android:id="@+id/txtMetas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/metas"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:paddingHorizontal="4dp">
 
                     <ImageButton
@@ -227,11 +227,11 @@
                         android:id="@+id/txtNovo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
                         android:text="@string/novo"
                         android:textColor="#000000"
-                        android:textSize="10sp"
-                        android:gravity="center_horizontal"
-                        android:maxLines="2" />
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -494,23 +494,6 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="#5088DD"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/menu_item_background"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:focusable="true" />
-
-        <TextView
-            android:id="@+id/menu_item_configuracoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Configurações"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor=" #5088DD"
             android:layout_marginTop="50dp"
             android:background="@drawable/menu_item_background"
             android:layout_marginLeft="8dp"
