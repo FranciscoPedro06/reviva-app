@@ -502,6 +502,7 @@
             android:clickable="true"
             android:focusable="true" />
 
+
         <TextView
             android:id="@+id/menu_item_sair"
             android:layout_width="match_parent"

@@ -125,12 +125,6 @@ public class MemoriaActivity extends AppCompatActivity {
         });
 
 
-        menuItemConfiguracoes.setOnClickListener(v -> {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, ConfiguracoesActivity.class);
-            // startActivity(intent);
-        });
-
         menuItemSair.setOnClickListener(v -> {
             drawerLayout.closeDrawer(GravityCompat.START);
             Intent intent = new Intent(MemoriaActivity.this, ConfirmarSignoutActivity.class);
