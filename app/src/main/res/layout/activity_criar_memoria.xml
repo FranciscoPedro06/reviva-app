@@ -511,7 +511,7 @@
             android:id="@+id/menu_item_sair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="395dp"
             android:clickable="true"
             android:focusable="true"
             android:padding="16dp"
