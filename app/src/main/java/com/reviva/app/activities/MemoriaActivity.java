@@ -106,7 +106,6 @@ public class MemoriaActivity extends AppCompatActivity {
 
 
         menuItemMinhasMemorias = findViewById(R.id.menu_item_minhas_memorias);
-        menuItemConfiguracoes = findViewById(R.id.menu_item_configuracoes);
         menuItemSair = findViewById(R.id.menu_item_sair);
 
 
@@ -125,12 +124,6 @@ public class MemoriaActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        menuItemConfiguracoes.setOnClickListener(v -> {
-            drawerLayout.closeDrawer(GravityCompat.START);
-            // Exemplo: Intent intent = new Intent(MemoriaActivity.this, ConfiguracoesActivity.class);
-            // startActivity(intent);
-        });
 
         menuItemSair.setOnClickListener(v -> {
             drawerLayout.closeDrawer(GravityCompat.START);
