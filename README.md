@@ -19,8 +19,8 @@ Reviva é um aplicativo Android desenvolvido para armazenar memórias pessoais c
 - **Firebase Storage** – Armazenamento de mídias
 
 ## 📁 Estrutura do Projeto
-
-app/
+```
+app/ 
 ├── src/
 │ └── main/
 │ ├── java/com/reviva/app/
@@ -28,7 +28,7 @@ app/
 │ │ ├── models/ # Modelos: Memory.java, User.java
 │ │ └── utils/ # Configurações e integração com Firebase
 │ └── res/ # Parte visual do app (XML)
-
+```
 
 ## 🚀 Como usar
 
