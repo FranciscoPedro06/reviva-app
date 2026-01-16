@@ -45,4 +45,4 @@ Este projeto está licenciado sob a Licença MIT – consulte o arquivo [LICENSE
 
 ---
 
-Desenvolvido por Matheus Santana, Francisco Pedro.
+Desenvolvido por Matheus Santana e Francisco Pedro.
